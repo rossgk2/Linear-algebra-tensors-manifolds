@@ -79,15 +79,44 @@ The following theorem making use of a modulus obtained from extended division co
 \label{ch::appendix::deriv::function_input_duality}
     (Function-input duality).
     
-    Let $X$ and $Y$ be sets, let $x \in X$, let $f:X \rightarrow Y$ be a function, and consider the expression $f(x)$.
+    Let $X$ and $Y$ be sets, let $x \in X$, let $f:X \rightarrow Y$ be a function, and consider the expression
+    
+    \begin{align*}
+    	f(x).
+    \end{align*}
 
     Typically, we think of $f$ as being applied to $x$ to produce the output $f(x)$. We can also think of $x$ as being applied to $f$, in some sense, to produce $f(x)$. In intuitive notation, we have $\text{``}x(f)\text{''} = f(x)$.
 
-    To formalize the intuition, notice that for every $x \in X$ there is a function $F_x$ that itself takes a function $X \rightarrow Y$ as input and applies it to $x$; so, $F_x(f) = f(x)$. Since the function sending $x \mapsto F_x$ is a bijection, we can identify $x$ with $F_x$ and then think of $x$ as being applied to $f$ via the action of $F_x$ on $f$. The intuition thus formalizes as $\text{``}x(f)\text{''} = F_x(f) = f(x)$.
+    To formalize the intuition, notice that for every $x \in X$ there is a function $F_x$ that itself takes a function $X \rightarrow Y$ as input and applies it to $x$; so, $F_x(f) = f(x)$. Since the function sending $x \mapsto F_x$ is a bijection, we can identify $x$ with $F_x$ and then think of $x$ as being applied to $f$ via the action of $F_x$. The intuition thus formalizes as $\text{``}x(f)\text{''} = F_x(f) = f(x)$.
 
-    We've successfully formalized the idea of applying inputs to functions, but there is still more insight to be had. If we define $X^* := \{\text{functions $X \rightarrow Y$}\}$, then we have $f \in X^*$ and $F_x \in (X^*)^* = X^{**}$. We've seen that $x \mapsto F_x$ is a bijection $X \rightarrow X^{**}$. Thus, $X$ and $X^{**}$ are ``the same'', in some sense, and we write $X \cong X^{**}$. On the other hand, there is no natural bijection between $X$ and $X^*$.
+	\vspace{.25cm}
 
-    Overall, the relationship between $X$, $X^*$, and $X^{**}$ is that elements of $X \cong X^{**}$ and $X^*$ act on each other. Since elements of $X^*$ cannot be naturally identified with elements $X$, yet can still act on elements of $X$, we call $X^*$ the \textit{dual set (to $X$)}. (We call $X^{**}$ the \textit{double dual set (to $X$)}).
+    There is still more insight to be had! Appraising the situation as a whole, we see that the two functions involved in the two interpretations of the expression $f(x)$ are
+    
+    \begin{align*}
+    	&f:X \rightarrow Y \text{, acting on $x$}\\
+    	&F_x:\{\text{functions $X \rightarrow Y$}\} \rightarrow Y \text{, acting on $f$}.
+   	\end{align*}
+   	
+   	To make the notation easier, we define $X^* := \{\text{functions $X \rightarrow Y$}\}$. The above can then be restated as
+   	
+   	\begin{align*}
+   		&f:X \rightarrow Y \text{, acting on $x$} \\
+   		&F_x:X^* \rightarrow Y \text{, acting on $f$}.
+   	\end{align*}
+   	
+	By defining the notation $X^*$, we have actually stumbled onto more algebraic structure. You might have to think about it for a second, but the above can \textit{further} be restated as
+	
+	\begin{align*}
+		&f \in X^* \text{, acting on $x$} \\
+		&F_x \in (X^*)^* \text{, acting on $f$}
+	\end{align*}
+
+	We noted earlier that $x \mapsto F_x$ is a bijection $X \rightarrow (X^*)^*$. Thus, $X$ and $(X^*)^*$ are ``the same'', in some sense, and we write $X \cong (X^*)^*$. (On the other hand, there is no natural bijection between $X$ and $X^*$.)
+	
+	\vspace{.25cm}
+
+    Overall, the relationship between $X$, $X^*$, and $(X^*)^*$ is that elements of $X \cong (X^*)^*$ and $X^*$ act on each other. Since elements of $X^*$ cannot be naturally identified with elements of $X$, yet can still act on elements of $X$, we call $X^*$ the \textit{dual set (to $X$)}. (We call $(X^*)^*$ the \textit{double dual set (to $X$)}), and denote it by $X^{**}$ for brevity.
 \end{deriv}
 
 \section*{Symmetric and orthogonal linear functions}
