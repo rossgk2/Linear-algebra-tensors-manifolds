@@ -1,6 +1,6 @@
 # Linear algebra, tensors, and manifolds
 
-This book covers three topic areas and has five goals: 
+Per its name, this book covers three topic areas. It accomplishes these five goals: 
 
 1. **(Linear algebra).** Give a treatment of linear algebra most relevant to physics.
 2. **(Tensors: multilinearity).** Give a comprehensive understanding of "multilinear elements", or *tensors*, to an extent that enables future study of tensor-intensive physics topics (e.g. general relativity).
