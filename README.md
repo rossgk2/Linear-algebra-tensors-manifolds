@@ -14,7 +14,6 @@ I aim to give a *best* presentation of every topic covered. There are many examp
 
 ### Linear algebra fundamentals
 
-Of great thematic imporatance:
 * Most texts define matrix-vector multiplication with no real motivation, and then inelegantly [conjecture and prove](https://github.com/rossgk2/naturalphilosophy/blob/main/On%20good%20explanations.md#conjecture-and-prove-math) that matrix-vector multiplication corresponds to the action of a linear function. This book derives the matrix-vector product in a natural way, and takes the additional step of introducing extremely convenient notation for the matrix of a linear function $\mathbf{f}$ relative to bases $E$ and $F$, $\[\mathbf{f}(E)\]_F$. I have not seen this notation used elsewhere.
 * Most texts similarly inelegantly conjecture and prove that matrix-matrix multiplication corresponds to the action of a composition of linear functions. This book provides another natural derivation.
 * This text explains why the following two definitions of the dot product are equivalent: (1) $\mathbf{v} \cdot \mathbf{w} := ||\mathbf{v}|| ||\mathbf{w}|| \cos(\theta)$ and (2) $\mathbf{v} \cdot \mathbf{w} := v_1 w_1 + ... + v_n w_n$. Traditional explanations rarely explain this; when they do, they unsatisfyingly rely on the law of cosines, which is a mistake- the law of cosines is rather unintuitive and is best seen to be a "end result", not a key tool used to establish other facts.
