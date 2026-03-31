@@ -1,12 +1,12 @@
 # Linear algebra, tensors, and manifolds
 
-Per its name, this book covers three topic areas. It several goals in those areas: 
+Per its name, this book covers three topic areas: linear algebra, tensors, and manifolds. It covers a sequence of goals in those areas, culminating in a beautiful generalization of the fundamental theorem of calculus: 
 
 * **(Linear algebra).** Give a treatment of the core linear algebra that's most relevant to physics.
 * **(Tensors: multilinearity).** Give a comprehensive understanding of "multilinear elements", or *tensors*, to an extent that enables future study of tensor-intensive physics topics (e.g. general relativity).
 * **(Tensors: antisymmetry).** Study multilinear and antisymmetric notions (the determinant, orientation, and the wedge product), and then learn how the wedge product is related to tensors.
 * **(Manifolds: essentials).** Generalize calculus to the setting of higher dimensional surfaces, or manifolds, by using multilinear and antisymmetric notions.
-* **(Manifolds: integration).** Use this calculus on manifolds to define a notion of integration on manifolds. Then prove the generalized Stokes' theorem, which is a beautiful generalization of the fundamental theorem of calculus.
+* **(Manifolds: integration).** Use this calculus on manifolds to define a notion of integration on manifolds. Then prove the generalized Stokes' theorem, a  generalization of the fundamental theorem of calculus.
 
 ## What's special about this book?
 
