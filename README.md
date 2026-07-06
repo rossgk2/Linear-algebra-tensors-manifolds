@@ -1,6 +1,6 @@
 # Linear algebra, tensors, and manifolds
 
-In accordance with its name, this book covers three topic areas: linear algebra, tensors, and manifolds. Within those areas, it achieves a sequence of goals that culminate in a beautiful generalization of the fundamental theorem of calculus: 
+In accordance with its name, this book covers three topic areas: linear algebra, tensors, and manifolds. It achieves a sequence of goals within those areas that culminate in a beautiful generalization of the fundamental theorem of calculus: 
 
 * **(Linear algebra).** Give a treatment of the core linear algebra that's most relevant to physics.
 * **(Tensors: multilinearity).** Give a comprehensive understanding of "multilinear elements", or *tensors*, to an extent that enables future study of tensor-intensive physics topics (e.g. general relativity).
