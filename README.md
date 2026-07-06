@@ -16,22 +16,6 @@ The reason is because the pedagogy in this book is superior, at least from the p
 
 I aim to give a *best* presentation of every topic covered. There are many examples of this in each of the topics the book covers:
 
-### Logic
-
-* We explain why the truth table of the implication operator $\implies$ makes sense. This correct explanation ("implies" only takes on its English-langauge meaning when you use it inside a "for all" quantifier) is often glossed over.
-
-### Linear algebra fundamentals
-
-* Most texts define matrix-vector multiplication with no real motivation, and then inelegantly [conjecture and prove](https://github.com/rossgk2/naturalphilosophy/blob/main/On%20good%20explanations.md#conjecture-and-prove-math) that matrix-vector multiplication corresponds to the action of a linear function. This book derives the matrix-vector product in a natural way, and takes the additional step of introducing extremely convenient notation for the matrix of a linear function $\mathbf{f}$ relative to bases $E$ and $F$, $\[\mathbf{f}(E)\]_F$. I have not seen this notation used elsewhere.
-* Most texts similarly inelegantly conjecture and prove that matrix-matrix multiplication corresponds to the action of a composition of linear functions. This book provides another natural derivation.
-* This text explains why the following two definitions of the dot product are equivalent: (1) $\mathbf{v} \cdot \mathbf{w} := ||\mathbf{v}|| ||\mathbf{w}|| \cos(\theta)$ and (2) $\mathbf{v} \cdot \mathbf{w} := v_1 w_1 + ... + v_n w_n$. Traditional explanations rarely explain this; when they do, they unsatisfyingly rely on the law of cosines, which is a mistake- the law of cosines is rather unintuitive and is best seen to be a "end result", not a key tool used to establish other facts.
-
-### Linear algebra technicalities
-
-* An intuitive definition for linear independence is used: a set of vectors is defined to be linearly independent if and only if every vector in the set is not in the span of all of the other vectors. The traditional definition of linear independence is proved to be equivalent to this alternative definition.
-* A basis of a vector space is defined to be a spanning set for that vector space of minimal size. (The traditional approach of defining a basis to be a linearly independent spanning set has the downside of requiring a proof that the dimension of every finite-dimensional vector space is unique, which would ideally be an obvious fact that doesn't require a long proof). In the approach we use, it is an immediate consequence of minimality that dimension is unique. This alternative approach approach also uses the same idea as in the proof required by the traditional approach to prove that a set is a spanning set of minimal size if and only if it is a linearly independent spanning set, thus effectively switching a definition and a theorem from the traditional approach for pedadogical benefit.
-
-
 ### Tensors
 * Tensors are presented in a linear algebra context before moving to the manifold context. Trying to learn tensors all at once in the manifold context is too much, in my opinion; there is plenty that needs investigation in the simpler setting of vector spaces. Most books on tensors take the approach that is "too much".
 * The fundamental property of tensor product spaces- that $\otimes$ appears to be a multilinear function- is made clear because we use an abstract implementation of the tensor product $\otimes$ that straightforwardly fulfills said property. Most books that do address tensors in the linear algebra context get lost in implementation details. For instance, many books use the definition of a tensor product space in which $(\phi \otimes \psi)(\mathbf{v}\_1, \mathbf{v}\_2) = \phi(\mathbf{v}\_1) \psi(\mathbf{v}\_2)$. Readers can easily get distracted by this implementation detail and be led astray from realizing what is really important, which is the fact that the tensor product $\otimes$ appears to be a multilinear function.
@@ -66,6 +50,22 @@ I aim to give a *best* presentation of every topic covered. There are many examp
 ### Manifolds
 * The differential $d\mathbf{F}$ of a map $\mathbf{F}:U \subseteq M \rightarrow V \subseteq N$ between smooth charts on smooth manifolds is not simply defined, without motivation, to be $d\mathbf{F}\_\mathbf{p}(v_\mathbf{p})(f) = v_\mathbf{p}(f \circ \mathbf{F})$. Instead, we define $d\mathbf{F}\_\mathbf{p}$ to be the function $T\_\mathbf{p}(U) \rightarrow T\_{\mathbf{F}(\mathbf{p})}(V)$ whose matrix relative to the charts' coordinate bases is the Jacobian matrix of the coordinate representation of $\mathbf{F}(\mathbf{p})$.
 * The uncommon geometric definition of the exterior derivative involving flux through a parallelapiped is used and the most common algebraic definition is shown to be a consequence of this.
+
+### Linear algebra fundamentals
+
+* Most texts define matrix-vector multiplication with no real motivation, and then inelegantly [conjecture and prove](https://github.com/rossgk2/naturalphilosophy/blob/main/On%20good%20explanations.md#conjecture-and-prove-math) that matrix-vector multiplication corresponds to the action of a linear function. This book derives the matrix-vector product in a natural way, and takes the additional step of introducing extremely convenient notation for the matrix of a linear function $\mathbf{f}$ relative to bases $E$ and $F$, $\[\mathbf{f}(E)\]_F$. I have not seen this notation used elsewhere.
+* Most texts similarly inelegantly conjecture and prove that matrix-matrix multiplication corresponds to the action of a composition of linear functions. This book provides another natural derivation.
+* This text explains why the following two definitions of the dot product are equivalent: (1) $\mathbf{v} \cdot \mathbf{w} := ||\mathbf{v}|| ||\mathbf{w}|| \cos(\theta)$ and (2) $\mathbf{v} \cdot \mathbf{w} := v_1 w_1 + ... + v_n w_n$. Traditional explanations rarely explain this; when they do, they unsatisfyingly rely on the law of cosines, which is a mistake- the law of cosines is rather unintuitive and is best seen to be a "end result", not a key tool used to establish other facts.
+
+### Linear algebra technicalities
+
+* An intuitive definition for linear independence is used: a set of vectors is defined to be linearly independent if and only if every vector in the set is not in the span of all of the other vectors. The traditional definition of linear independence is proved to be equivalent to this alternative definition.
+* A basis of a vector space is defined to be a spanning set for that vector space of minimal size. (The traditional approach of defining a basis to be a linearly independent spanning set has the downside of requiring a proof that the dimension of every finite-dimensional vector space is unique, which would ideally be an obvious fact that doesn't require a long proof). In the approach we use, it is an immediate consequence of minimality that dimension is unique. This alternative approach approach also uses the same idea as in the proof required by the traditional approach to prove that a set is a spanning set of minimal size if and only if it is a linearly independent spanning set, thus effectively switching a definition and a theorem from the traditional approach for pedadogical benefit.
+
+### Logic
+
+* We explain why the truth table of the implication operator $\implies$ makes sense. This correct explanation ("implies" only takes on its English-langauge meaning when you use it inside a "for all" quantifier) is often glossed over.
+
 ## Copyright
 
 This textbook is intended to be downloaded and read for free. If you would like to repurpose the content of this book, please clearly state that you have done so and credit this textbook as a reference.
