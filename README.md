@@ -1,6 +1,6 @@
 # Linear algebra, tensors, and manifolds
 
-Per its name, this book covers three topic areas: linear algebra, tensors, and manifolds. Within those areas, it achieves a sequence of goals that culminate in a beautiful generalization of the fundamental theorem of calculus: 
+In accordance with its name, this book covers three topic areas: linear algebra, tensors, and manifolds. Within those areas, it achieves a sequence of goals that culminate in a beautiful generalization of the fundamental theorem of calculus: 
 
 * **(Linear algebra).** Give a treatment of the core linear algebra that's most relevant to physics.
 * **(Tensors: multilinearity).** Give a comprehensive understanding of "multilinear elements", or *tensors*, to an extent that enables future study of tensor-intensive physics topics (e.g. general relativity).
@@ -10,7 +10,7 @@ Per its name, this book covers three topic areas: linear algebra, tensors, and m
 
 ## What's special about this book?
 
-There are many books about linear algebra, tensors, and differential forms, and probably all of them are written by people who know more about these concepts than me. So why read this book?
+There are many books about linear algebra, tensors, and manifolds, and probably all of them are written by people who know more about these concepts than me. So why read this book?
 
 The reason is because the pedagogy in this book is superior, at least from the perspective of those who are dissatisfied with [presentations of mathematics that sacrifice understanding for logical or technical efficiency](https://github.com/rossgk2/naturalphilosophy/blob/main/On%20good%20explanations.md#the-dreaded-efficency-pedagogy).
 
