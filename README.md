@@ -44,13 +44,12 @@ I aim to give a *best* presentation of every topic covered. There are many examp
   * Now, notice that that one ordered basis is the rotation by some angle of another ordered basis if and only if the one can be obtained by swap-and-negating vectors in the other. Therefore, orientation is preserved by the operation of swap-and-negating vectors.
   * Since the determinant is also preserved by swap-and-negating vectors, it is quick to show that if $S^{\sigma}$ is a permutation of the standard ordered basis by $\sigma$, then the orientation of $S^\sigma$ is the sign of $\text{det}(S^{\sigma})$.
   * We can extend the previous fact, which applies to permutations of the standard ordered basis, to arbitrary orthonormal ordered bases (by using the fact that rotations preserve orientation), and then to arbitrary ordered bases (by using Gram-Schmidt). Thus the orientation of an ordered basis is the sign of the determinant of that ordered basis.
-* Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
-  * The equivalence to the usual definition of differential form is also explained.
 
 ### Manifolds
 * The differential $d\mathbf{F}$ of a map $\mathbf{F}:U \subseteq M \rightarrow V \subseteq N$ between smooth charts on smooth manifolds is not simply defined, without motivation, to be $d\mathbf{F}\_\mathbf{p}(v_\mathbf{p})(f) = v_\mathbf{p}(f \circ \mathbf{F})$. Instead, we define $d\mathbf{F}\_\mathbf{p}$ to be the function $T\_\mathbf{p}(U) \rightarrow T\_{\mathbf{F}(\mathbf{p})}(V)$ whose matrix relative to the charts' coordinate bases is the Jacobian matrix of the coordinate representation of $\mathbf{F}(\mathbf{p})$.
 * The uncommon geometric definition of the exterior derivative involving flux through a parallelapiped is used and the most common algebraic definition is shown to be a consequence of this.
-
+* Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product. We explain the equivalence of this kind of differential form to the usual definition.
+  
 ### Linear algebra fundamentals
 
 * Most texts define matrix-vector multiplication with no real motivation, and then inelegantly [conjecture and prove](https://github.com/rossgk2/naturalphilosophy/blob/main/On%20good%20explanations.md#conjecture-and-prove-math) that matrix-vector multiplication corresponds to the action of a linear function. This book derives the matrix-vector product in a natural way, and takes the additional step of introducing extremely convenient notation for the matrix of a linear function $\mathbf{f}$ relative to bases $E$ and $F$, $\[\mathbf{f}(E)\]_F$. I have not seen this notation used elsewhere.
