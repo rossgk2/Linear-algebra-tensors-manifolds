@@ -8,3 +8,6 @@
 *.fls
 book.fdb_latexmk
 preface.fdb_latexmk
+book.synctex(busy)
+*.fdb_latexmk
+ch_appendix.fdb_latexmk

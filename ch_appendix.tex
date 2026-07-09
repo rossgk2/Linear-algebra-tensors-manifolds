@@ -73,51 +73,147 @@ The following theorem making use of a modulus obtained from extended division co
     If $t \in [0, 2\pi)$ then $-t \in (-2\pi, 0]$ and so the greatest integer multiple of $2\pi$ less than $-t$ is $-2\pi$. The modulus $-t \bmod 2\pi$ is the difference between $-t$ and this multiple, i.e. $-t - (-2\pi) = 2\pi - t$.
 \end{proof}
 
-\section*{Function-input duality}
+\section*{Some precursors to category theory}
+
+\subsection*{Another perspective on dual spaces}
+
+In Chapter \ref{ch::motivated_intro}, we motivated the definition of the dual space by seeing how it became useful when decomposing a linear function between vector spaces into a sum of ``elementary compositions''. Then, we kind of stumbled onto the theorems that describe in what sense a dual space is actually dual.
+
+Here we present a derivation of dual spaces that emphasizes the core duality idea from the start.
 
 \begin{deriv}
 \label{ch::appendix::deriv::function_input_duality}
     (Function-input duality).
     
-    Let $X$ and $Y$ be sets, let $x \in X$, let $f:X \rightarrow Y$ be a function, and consider the expression
+    Let $V$ and $W$ be vector spaces over a field $K$, let $\vv \in V$, let $\ff:V \rightarrow W$ be a function, and consider the expression
     
     \begin{align*}
-    	f(x).
+    	\ff(\vv).
     \end{align*}
 
-    Typically, we think of $f$ as being applied to $x$ to produce the output $f(x)$. We can also think of $x$ as being applied to $f$, in some sense, to produce $f(x)$. In intuitive notation, we have $\text{``}x(f)\text{''} = f(x)$.
+    Typically, we think of $\ff$ as being applied to $\vv$ to produce the output $\ff(\vv)$. We can also think of $\vv$ as being applied to $\ff$, in some sense, to produce $\ff(\vv)$. In intuitive notation, we have $\text{``}\vv(\ff)\text{''} = \ff(\vv)$.
 
-    To formalize the intuition, notice that for every $x \in X$ there is a function $F_x$ that itself takes a function $X \rightarrow Y$ as input and applies it to $x$; so, $F_x(f) = f(x)$. Since the function sending $x \mapsto F_x$ is a bijection, we can identify $x$ with $F_x$ and then think of $x$ as being applied to $f$ via the action of $F_x$. The intuition thus formalizes as $\text{``}x(f)\text{''} = F_x(f) = f(x)$.
+    To formalize the intuition, notice that for every $\vv \in V$ there is a function $\FF_{\vv}$ that itself takes a function $V \rightarrow W$ as input and applies it to $\vv$; so, $\FF_{\vv}(\ff) = \ff(\vv)$. Since the function sending $\vv \mapsto \FF_{\vv}$ is an injection, we can identify each $\vv \in V$ with $\FF_{\vv}$ and then think of $\vv$ as being applied to $\ff$ via the action of $\FF_{\vv}$. The intuition thus formalizes as $\text{``}\vv(\ff)\text{''} = \FF_{\vv}(\ff) = \ff(\vv)$.
 
 	\vspace{.25cm}
 
-    There is still more insight to be had! Appraising the situation as a whole, we see that the two functions involved in the two interpretations of the expression $f(x)$ are
+    There is still more insight to be had! Appraising the situation as a whole, we see that the two functions involved in the two interpretations of the expression $\ff(\vv)$ are
     
     \begin{align*}
-    	&f:X \rightarrow Y \text{, acting on $x$}\\
-    	&F_x:\{\text{functions $X \rightarrow Y$}\} \rightarrow Y \text{, acting on $f$}.
+    	&\ff:V \rightarrow W \text{, acting on $\vv$}\\
+    	&\FF_{\vv}:\{\text{functions $V \rightarrow W$}\} \rightarrow W \text{, acting on $\ff$}.
    	\end{align*}
    	
-   	To make the notation easier, we define $X^* := \{\text{functions $X \rightarrow Y$}\}$. The above can then be restated as
+   	To make the notation easier, we define $V^* := \{\text{functions $V \rightarrow W$}\}$. The above can then be restated as
    	
    	\begin{align*}
-   		&f:X \rightarrow Y \text{, acting on $x$} \\
-   		&F_x:X^* \rightarrow Y \text{, acting on $f$}.
+   		&\ff:V \rightarrow W \text{, acting on $\vv$} \\
+   		&\FF_{\vv}:V^* \rightarrow W \text{, acting on $\ff$}.
    	\end{align*}
-   	
-	By defining the notation $X^*$, we have actually stumbled onto more algebraic structure. You might have to think about it for a second, but the above can \textit{further} be restated as
+
+	By defining the notation $V^*$, we have actually stumbled onto more algebraic structure. You might have to think about it for a second, but the above can \textit{further} be restated as
+
+	\begin{align*}
+		&\ff \in V^* \text{, acting on $\vv$} \\
+		&\FF_{\vv} \in (V^*)^* \text{, acting on $\ff$}
+	\end{align*}
+	 
+	 Overall, the relationship between $V$, $V^*$, and $(V^*)^*$ is that elements of $V \cong (V^*)^*$ and $V^*$ act on each other. Since elements of $V^*$ cannot be naturally identified with elements of $V$, yet can still act on elements of $V$, we call $V^*$ the \textit{dual set (to $V$)}. (We call $(V^*)^*$ the \textit{double dual set (to $V$)}), and denote it by $V^{**}$ for brevity.
+	 
+	 Except... there's a bit more to be done. We know $V$ can be injected within $(V^*)^*$, but we don't yet know $(V^*)^*$ can be injected within $V$. And it doesn't feel right to say we have ``duality'' \textit{unless} we also have symmetry. 
+	 
+	 So, when \textit{do} we have a natural isomorphism $(V^*)^* \cong V$? Well, making use of the natural isomorphisms from Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}, we have
 	
 	\begin{align*}
-		&f \in X^* \text{, acting on $x$} \\
-		&F_x \in (X^*)^* \text{, acting on $f$}
+		(V^*)^* &:= \LLLL(\LLLL(V \rightarrow W) \rightarrow W) \\ &\cong \LLLL(V \rightarrow W) \otimes W^* \\
+		&\cong V \otimes W^* \otimes W^* \\
+		&\cong V \otimes (W^*)^{\otimes 2}.
 	\end{align*}
-
-	We noted earlier that $x \mapsto F_x$ is a bijection $X \rightarrow (X^*)^*$. Thus, $X$ and $(X^*)^*$ are ``the same'', in some sense, and we write $X \cong (X^*)^*$. (On the other hand, there is no natural bijection between $X$ and $X^*$.)
 	
-	\vspace{.25cm}
-
-    Overall, the relationship between $X$, $X^*$, and $(X^*)^*$ is that elements of $X \cong (X^*)^*$ and $X^*$ act on each other. Since elements of $X^*$ cannot be naturally identified with elements of $X$, yet can still act on elements of $X$, we call $X^*$ the \textit{dual set (to $X$)}. (We call $(X^*)^*$ the \textit{double dual set (to $X$)}), and denote it by $X^{**}$ for brevity.
+	Thus $(V^*)^* \cong V$ if and only if $(W^*)^{\otimes 2} \cong K$. And this is the case if and only if $W \cong K$. The simplest way to achieve this is by simply setting $W := K$. We therefore update our definition:
+	
+	\begin{align*}
+		V^* := \LLLL(V \rightarrow K)
+	\end{align*} 
+	
+	Now, not only can elements of $V$ be represented by elements of $V^{**}$, but also can elements of $V^{**}$ be represented by elements of $V$.
 \end{deriv}
+
+\subsection*{Characterizing natural linear isomorphisms}
+
+Let $V$ be a vector space. We know that $V$ is linearly isomorphic to $V^*$, since, if we choose a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$, then there is an induced dual basis $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ for $V^*$, and the function $V \rightarrow V^*$ defined by $\ee_i \mapsto \phi^{\ee_i}$ is a linear isomorphism.
+
+We also intuitively know that since this isomorphism depends on the basis $E$, it is dependent on circumstance, and not truly \textit{natural}. We haven't yet formalized this notion of naturality, though.
+
+We do this now.
+
+\begin{deriv}
+	(Characterizing natural linear isomorphisms between $V$ and $V^*$).
+	
+	Heuristically, we posit that a linear isomorphism $\ff_V:V \rightarrow V^*$ should only be considered \textit{natural} if ``its manner of construction is preserved'' when the basis of $V$ is changed, or when vectors in $V$ are otherwise swapped out for identical vectors from a different vector space $W$ with a linear isomorphism $\gg:V \rightarrow W$. To make this heuristic precise, we will say that the manner of construction of $\ff_V$ is preserved if and only if the isomorphism corresponding to $\ff_V$ between $W$ and $W^*$ \textit{that is naturally induced by $\gg$} is equal to $\ff_W$.
+	
+	We have shifted the question ``What does it mean for a linear isomorphism to be natural?'' to the question ``What is the isomorphism corresponding to $\ff_V$ between $W$ and $W^*$ that is naturally induced by $\gg$?''. To answer this later question, we need to figure out what functions should label the unlabeled arrows in the following diagram:
+	
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQB1EAX1PU1z5CKchWp0mrdgDUefEBmx4CRUcXEMWbRCGkA9AFRz+SoUTLqamqTo6Ge4mFADm8IqABmAJwgBbJKIgOBBIxLyePv6IZEEhiABM4SDefkjxNMFIAMzclNxAA
+	\begin{center}
+		\begin{tikzcd}
+			V \arrow[d, "\ff_V"']   & W \arrow[l] \\
+			V^* \arrow[r] & W^*
+		\end{tikzcd}
+	\end{center}
+	
+	It is hopefully reasonable to take as axiom that the natural way to go between $V$ and $W$ is to use $\gg:V \rightarrow W$ (or its inverse), as $\gg$ and $W$ were introduced in the same breath. And, since each linear function between vector spaces corresponds to a dual linear function between dual vector spaces, it is hopefully reasonable to take as axiom that the natural way to go between the dual spaces $V^*$ and $W^*$ is to use the dual $\gg^*:W^* \rightarrow V^*$ (or its inverse). If we do accept these axioms, then the completed diagram is
+	
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQB1EAX1PU1z5CKchWp0mrdgDUefEBmx4CRUcXEMWbRCGkA9AFRz+SoUTLqamqTo6Ge4mFADm8IqABmAJwgBbJKIgOBBIZBJa7AA6kc7OesAAtMTcIDSM9ABGMIwACgLKwiBeWM4AFjjGIN5+oTTBSABMVpLaINEeHgD6smmZ2XmmKjrFZRW8nj7+iE1BIYgAzM0ROgAU0bGGAJTxSSm9Wbn5ZsMl5Q7cQA
+	\begin{center}
+		\begin{tikzcd}
+			V \arrow[d, "\ff_V"']          & W \arrow[l, "\gg^{-1}"'] \\
+			V^* \arrow[r, "(\gg^*)^{-1}"'] & W^*
+		\end{tikzcd}
+	\end{center}
+	
+	Now recall that we said $\ff_V$ should only be considered a natural linear isomorphism if and only if the isomorphism corresponding to $\ff_V$ between $W$ and $W^*$ that is naturally induced by $\gg$ is equal to $\ff_W$. This means that $\ff_V$ is a natural linear isomorphism if and only if for all vector spaces $W$ and linear isomorphisms $\gg:V \rightarrow W$, the following diagram commutes:
+	
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRQBGclVqMWbAOrdeIDNjwEiZYePrNWiDgD0AVHL5LBRUeuqapO6Qe7iYUAObwioAGYAnCAFskAZmocCCQAJktJbRAAHWj3dzseD28-RDIQYKRRCS02WKcnIxAvXyR0zMRwkAY6ACMYBgAFfmUhEE8sJwALHBAI3J1Y+IB9TiTilKygkMRAnOsY6ILR+y4gA
+	\begin{center}
+		\begin{tikzcd}
+			V \arrow[r, "\gg"] \arrow[d, "\ff_V"'] & W \arrow[d, "\ff_W"]   \\
+			V^*                                    & W^* \arrow[l, "\ff^*"]
+		\end{tikzcd}
+	\end{center}
+\end{deriv}
+
+To be clear, we restate the definition we just derived.
+
+\begin{defn}
+	(Natural linear isomorphism between $V$ and $V^*$).
+	
+	When $V$ is a vector space, we say that a linear isomorphism $\ff_V:V \rightarrow V^*$ is \textit{natural} if and only if the following diagram commutes for all vector spaces $W$ and all linear isomorphisms $\gg:V \rightarrow W$:
+	
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRQBGclVqMWbAOrdeIDNjwEiZYePrNWiDgD0AVHL5LBRUeuqapO6Qe7iYUAObwioAGYAnCAFskAZmocCCQAJktJbRAAHWj3dzseD28-RDIQYKRRCS02WKcnIxAvXyR0zMRwkAY6ACMYBgAFfmUhEE8sJwALHBAI3J1Y+IB9TiTilKygkMRAnOsY6ILR+y4gA
+	\begin{center}
+		\begin{tikzcd}
+			V \arrow[r, "\gg"] \arrow[d, "\ff_V"'] & W \arrow[d, "\ff_W"]   \\
+			V^*                                    & W^* \arrow[l, "\ff^*"]
+		\end{tikzcd}
+	\end{center}
+\end{defn}
+
+We can easily generalize this definition so that it applies to more linear isomorphisms than just those between $V$ and $V^*$.
+
+\begin{defn}
+	(Natural linear isomorphism).
+	
+	Let $V$ be a vector space, and let $\FF(V)$ be a vector space constructed from $V$ in such a way that for every vector space $W$ and every linear function $\ff:V \rightarrow W$, there is a linear function $\FF(\ff):\FF(V) \rightarrow \FF(W)$. We say that a linear isomorphism $\ff:V \rightarrow \FF(V)$ is \textit{natural} if and only if the following diagram commutes for all vector spaces $W$ and all linear isomorphisms $\gg:V \rightarrow W$:
+	
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRQBGclVqMWbAOrdeIDNjwEiZYePrNWiDgD0AVHL5LBRUeuqapO6Qe7iYUAObwioAGYAnCAFskAZmocCCQAJktJbRAAHWj3dzseD28-RDIQYKRRCS02WKcnIxAvXyR0zMRwkAY6ACMYBgAFfmUhEE8sJwALHBAI3J1Y+IB9TiTilKygkMRAnOsY6ILR+y4gA
+	\begin{center}
+		\begin{tikzcd}
+			V \arrow[r, "\gg"] \arrow[d, "\ff_V"'] & W \arrow[d, "\ff_W"]   \\
+			\FF(V)                                    & \FF(W) \arrow[l, "\FF(\ff)"]
+		\end{tikzcd}
+	\end{center}
+\end{defn}
 
 \section*{Symmetric and orthogonal linear functions}
 

@@ -587,20 +587,20 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
     Some authors use $\vv^*$ to denote $\phi^\vv$, while also using $\{\ee_1^*, ..., \ee_n^*\}$ to denote an \textit{arbitrary} basis of $V^*$. This notation is misleading because it is suggestive of the false equation $\ee_i^* = \ee_i^*$, where the first $*$ is from the definition of $\vv^*$ and where the second $*$ is part of a basis vector $\ee_i^*$. The equation is false because it is equivalent to the following claim: ``if $\{\epsilon^1, ..., \epsilon_n\}$ is an arbitrary basis of $V^*$ then $\phi^{\ee_i} = \epsilon^i$'', which is false because it is possible to pick a basis for $V^*$ that is not the induced dual basis.
 \end{remark}
 
-\subsection*{The dual transformation}
+\subsection*{The dual function}
 
 \begin{defn}
 \label{ch::motivated_intro::defn::dual_transf}
-    (Dual transformation).
+    (Dual function).
     
     Let $V$ and $W$ be finite-dimensional vector spaces, and let $\ff:V \rightarrow W$ be a linear function.
-    The \textit{dual transformation of $\ff$}, also called the \textit{transpose of $\ff$}, is the linear function $\ff^*:W^* \rightarrow V^*$ defined by $\ff^*(\psi) = \psi \circ \ff$.
+    The \textit{dual of $\ff$}, also called the \textit{transpose of $\ff$}, is the linear function $\ff^*:W^* \rightarrow V^*$ defined by $\ff^*(\psi) = \psi \circ \ff$.
 \end{defn}
 
-The following theorem reveals why the dual transformation is sometimes referred to as the transpose.
+The following theorem reveals why the dual is sometimes referred to as the transpose.
 
 \begin{theorem}
-    (Dual transformation is represented by transpose matrix).
+    (The dual is represented by the transpose matrix).
 
     Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, and let $E^*$ and $F^*$ be the induced dual bases for $V^*$ and $W^*$. Consider a linear function $\ff:V \rightarrow W$. Recall from Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases} that $[\ff(E)]_F$ denotes the matrix of $\ff:V \rightarrow W$ relative to $E$ and $F$. The matrix $[\ff^*(F^*)]_{E^*}$ of $\ff^*:W^* \rightarrow V^*$ relative to $F^*$ and $E^*$ is $[\ff^*(F^*)]_{E^*} = [\ff(E)]_F^{\top}$.
 \end{theorem}

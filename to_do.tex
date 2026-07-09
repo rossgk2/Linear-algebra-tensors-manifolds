@@ -449,11 +449,24 @@ At the very least, make sure there's a remark on how the solution set to a syste
 
 \section*{Tensors}
 
+Basic fixes:
+
 \begin{itemize}
     \item Current defn of tensor product space (and wedge product space) relies on fact that if $T_1 \sim T_2$ and $S_1 \sim S_2$ then $T_1 + S_1 \sim T_2 + S_2$, which is not too hard to prove. This fact is required to show that the defn is the vector space spanned by elements of the form $\vv_1 \otimes ... \otimes \vv_k$, which is the crucial intuition. Stating this fact obscures the details, so should switch defn to a more informal one, that being the crucial intuition.
-    \item Then, add a remark about how one can more formally construct tensor and wedge product spaces by using $F(V \times W)/\sim$ for various $\sim$. See Warner for how to do this, and add a section on quotient vector spaces and $F(V \times W)/\sim$ to the appendix. 
+
+	Then, add a remark about how one can more formally construct tensor and wedge product spaces by using $F(V \times W)/\sim$ for various $\sim$. See Warner for how to do this, and add a section on quotient vector spaces and $F(V \times W)/\sim$ to the appendix. 
     \item Check if remark on covariance and contravariance is correct in light of the fact that I’ve shown vectors transform with $[\EE]_F$ and covectors transform with its transpose inverse. Aren’t covectors supposed to be the ones that transform with the matrix that isn’t a transpose inverse? Maybe the answer is that the change of basis matrix is considered to be the one containing the vectors from the new basis taken relative to the old basis, i.e. $[\FF]_E$.
     \item Why is it necessary that covector components be indexed oppositely to covectors? Same question goes for vector components and vectors.
+\end{itemize}
+
+\textbf{Big new idea}: add a ``Duality'' section after the ``Multilinear functions and tensor product spaces'' section and before the ``Introduction to $(p, q)$ tensors'' section. Now that I know about how to introduce dual spaces really intuitively from the perspective of duality, I think that this is a better introduction than just seeing dual spaces fall out of the decomposition of a linear function. That decomposition certainly explains why $\LLLL(V \rightarrow K)$ is important, but not why functionalizing it in a definition $V^* := \LLLL(V \rightarrow K)$ is intuitive. The intuitive duality introduction does. And this way, by the time we come across $\LLLL(V \rightarrow K)$ in the decomposition, we are already familiar with it. Here's the outline:
+\begin{itemize}
+	\item Follow the argument from ``Another perspective on dual spaces'', except for the part that makes use of natural isomorphisms from later in this chapter.
+	\item In place of that part, use a dimensionality argument. We have $(V^*)^* := \LLLL(\LLLL(V \rightarrow W) \rightarrow W)$, and so for finite-dimensional spaces we have $\dim((V^*)^*) = \dim(\LLLL(V \rightarrow W))\dim(W) = \dim(V)\dim(W)^2$. Thus if we want $(V^*)^* \cong V$ we need $\dim(W) = 1$.
+\end{itemize}
+
+Less important
+\begin{itemize}
     \item After Ricci law: example of changing basis for a purely covariant tensor, a purely contravariant tensor, and a not too complicated mixed tensor
     \item Also, the metric tensor can have its coordinates changed!
     \item Remark: summary of physicist notation. Include the previous remark and the one about the physicist notation regarding the metric tensor.
