@@ -2180,6 +2180,139 @@ The following special case of the above theorem follows immediately.
 
 \section{Geometry in $\R^n$}
 
+\subsection{Length in $\R^2$}
+
+[Describe the interface to length, not the implementation]
+
+\begin{defn}
+	[This should be an axiom, not a defn]
+	
+	We will for the moment suppose that there exists a function $||\cdot||:\R^2 \rightarrow (0, \infty)$ satisfying
+		
+	\begin{enumerate}
+		\item $||\see_i|| = 1$ for all $i \in \{1, 2\}$
+		\item $||c\vv|| = |c| \spc ||\vv||$ for all $c \in \R$
+		\item ...
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}
+	(Unit vector).
+	
+	A vector $\vv \in \R^2$ is called a \textit{unit vector} iff $||\vv|| = 1$.
+\end{defn}
+
+\begin{defn}
+	(Vector normalization).
+	
+	The function $\R^2 \rightarrow \R^2$ defined by $\vv \mapsto \frac{\vv}{||\vv||}$ converts its vector input into the multiple of itself that is a unit vector. We denote its action on a vector by $\hvv$, and call it the \textit{(vector) normalization} function.
+\end{defn}
+
+\begin{proof}
+	We need to show that we do indeed have $||\hvv|| = 1$. Well, we have $||\hvv|| = \Big|\Big|\frac{\vv}{||\vv||}\Big|\Big| = \Big|\frac{1}{||\vv||}\Big| \spc ||\vv|| = \frac{1}{||\vv||} ||\vv|| = 1$, as desired.
+\end{proof}
+
+\subsection*{Projections in $\R^2$}
+
+\begin{defn}
+	(Projection within a basis).
+	
+	Let $\vv$ in $\R^2$ and let $\{\ww, \uu\}$ be a basis of $\R^2$. For every choice of $\ww$, there are unique scalars $c, k \in \R$ such that
+	
+	\begin{align*}
+		\vv = c \ww + k \uu.
+	\end{align*}
+	
+	Since the vector $c\ww$ can be considered to be the part of $\vv$ that lies in the direction of $\ww$, we call it the \textit{projection of $\vv$ onto $\ww$ within the basis $\{\ww, \uu\}$}.
+\end{defn}
+
+While, for each $\vv \in \R^2$, there is enough freedom that we can choose this projection to be whatever we want, at the same time it seems like there should be a unique one of these projections where $\ww$ and $\uu$ are configured in such a way that $c\ww$ represents how much $\ww$ is ``really'' in $\vv$, not how much $\ww$ is ``technically'' in $\vv$ when we allow $k$ and $\uu$ to compensate for a wild choice of $c\ww$. 
+
+Since a multiple of $\ww$ can only get closer to $\vv$ by optimizing the component of $\vv$ in the $\ww$ direction, it makes sense to treat the multiple of $\ww$ that is closest to $\vv$ as the ``true'' component of $\vv$ in the $\ww$ direction.
+
+This motivates the following definition.
+
+\begin{defn}
+	(Vector projection).
+	
+	For $\vv, \ww \in \R^2$, we define the \textit{projection} $\proj(\vv \rightarrow \ww)$ \textit{of $\vv$ onto $\ww$} to be $\proj(\vv \rightarrow \ww) := \min_{c \in \R} ||c\ww - \vv||$.
+\end{defn}
+
+\begin{theorem}
+	(Properties of vector projection).
+	
+	\begin{enumerate}
+		\item $(\vv, \ww) \mapsto \proj(\vv \rightarrow \ww)$ preserves vector addition in both arguments
+		\item $(\vv, \ww) \mapsto \proj(\vv \rightarrow \ww)$ vector scaling in the first argument; as for the the second argument, it satisfies $\proj(\vv \rightarrow \ww) = \proj(\vv \rightarrow c\ww)$ for all $c \in \R$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	[TO DO]
+\end{proof}
+
+\subsection*{Perpendicularity}
+
+\begin{defn}
+	(Perpendicularity).
+	
+	When $\vv, \ww \in \R^2$, we say that $\vv$ is \textit{perpendicular} to $\ww$ iff $\proj(\vv + \ww, \vv) = \vv$.
+\end{defn}
+
+\begin{remark}
+	 (Perpendicularity and angle).
+	 
+	 After we define angle in [...] we will be able to prove the familiar fact that $\vv \in \R^2$ is perpendicular to $\ww \in \R^2$ iff the unsigned angle between them is $\frac{\pi}{2}$.
+\end{remark}
+
+\begin{theorem}
+	For all $\vv, \ww \in \R^2$, $\vv$ is perpendicular to $\ww$ iff $\proj(\vv, \ww) = \mathbf{0}$.
+\end{theorem}
+
+\begin{proof}
+	Since v = proj(v, v), the defn is equivalent to proj(v + w, v) = proj(v, v). Subtracting v from both sides and using the fact that proj preserves vector addition yields proj(w, v) = proj(0, v) = 0.
+\end{proof}
+
+\begin{theorem}
+	For all $\vv, \ww \in \R^2$, $\vv$ is perpendicular to $\ww$ iff w is perpendicular to v.
+\end{theorem}
+
+\begin{proof}
+	If the multiple of w closest to v is 0, then the multiple of v closest to w is 0. [TO DO]
+\end{proof}
+
+\subsection*{Length}
+
+Recall how, while nearly a linear function, $\proj$ doesn’t preserve vector scaling in its second input, instead having the property that projecting onto a vector $\ww$ gives the same result as projecting onto \textit{any} scalar multiple of $\ww$. It seems, thus [I think this is a sufficient but not necessary condition], that, $\proj(\vv, \ww)$ is independent of the length of $\ww$.
+
+Indeed, if there \textit{did} exist a function $\ff:\R^2 \rightarrow \R^2$ that were linear in both of its inputs, then we could construct a function just like $\proj$ by normalizing the second input:
+
+[shift over to sproj]
+[haven't fixed the following so that it's written in terms of sproj... that's the next thing to do]
+
+
+
+proj(v, w) := B(v, w/||w||) for some almost-bilinear* B, where ||-|| is such that ||cw|| = |c| ||w||. Of course, we have to have a digression about length before getting to this:
+
+* it would only kind of preserve scaling in its second argument.
+
+
+If there existed a length function ||-||:R^2 -> (0, infty) satisfying ||cv|| = |c|||v|| then lproj(v, w) := ||w|| proj(v, w) would kind of preserve scaling.
+Proof. lproj(v, cw)| = ||cw|| proj(v, cw) = ||cw|| proj(v, w) = |c| ||w|| proj(v, w) = |c| lproj(v, w)
+Secretly know that proj(v, w) = ((v . w)/||w||) what. So lproj(v, w) = ||w|| proj(v, w) = (v . w) what. And this isn’t linear! Have to multiply by ||w|| again to make it so.
+Maybe we can still work with this absolute value weirdness? We have what we need to define unit vectors, which are the next step, and it seems kind of unmotivated to multiply by ||w|| again to get a linear map. Yes, it isn’t that much of a jump to realize ||w||^2 proj(v, w) preserves scaling, but I think we can do better.
+(Defn). We say v in R^2 is a unit vector iff lproj(v, v) = v. 
+Secretly, we know lproj(v, v) = (v . v) vhat = ||v||^2 vhat which is equal to v when v = vhat.
+(Thm). For every v in R^2, v/||v|| is a unit vector.
+Proof. lproj(v, v) = ||v|| proj(v, v) = ||v|| v. Since lproj is linear in the first argument, we can divide each side by ||v|| to obtain lproj(v/||v||, v) = proj(v, v).
+Knowing this allows us to give concrete form to ||-||.
+(Defn). When lproj(v, w) = cw + dw_perp, we define sproj(v, w) := c.
+(Defn). For v in R^2 we define ||v|| to be such that ||v|| = |sproj(v, v/||v||)| <=> ||v||^2 = sproj(v, v).
+Remember, we need to show ||cv|| = |c| ||v||. [TO DO]
+(Theorem). If v = a + b, where a is perpendicular to b, then ||v||^2 = ||a||^2 + ||b||^2.
+We have ||v||^2 = sproj(a, a) + sproj(a, b) + sproj(b, a) + sproj(b, b) = sproj(a, a) + sproj(b, b) = ||a||^2 + ||b||^2.
+And this leads to usual formula for magnitude!
+
 \subsection*{Length in $\R^n$}
 
 \begin{defn}
