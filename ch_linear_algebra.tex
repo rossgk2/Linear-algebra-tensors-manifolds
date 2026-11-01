@@ -2239,12 +2239,7 @@ This motivates the following definition.
 \end{defn}
 
 \begin{theorem}
-	(Properties of vector projection).
-	
-	\begin{enumerate}
-		\item $(\vv, \ww) \mapsto \proj(\vv \rightarrow \ww)$ preserves vector addition in both arguments
-		\item $(\vv, \ww) \mapsto \proj(\vv \rightarrow \ww)$ vector scaling in the first argument; as for the the second argument, it satisfies $\proj(\vv \rightarrow \ww) = \proj(\vv \rightarrow c\ww)$ for all $c \in \R$.
-	\end{enumerate}
+	(Existence of vector projections).
 \end{theorem}
 
 \begin{proof}
@@ -2283,34 +2278,62 @@ This motivates the following definition.
 
 \subsection*{Length}
 
-Recall how, while nearly a linear function, $\proj$ doesn’t preserve vector scaling in its second input, instead having the property that projecting onto a vector $\ww$ gives the same result as projecting onto \textit{any} scalar multiple of $\ww$. It seems, thus [I think this is a sufficient but not necessary condition], that, $\proj(\vv, \ww)$ is independent of the length of $\ww$.
+\begin{theorem}
+	(Properties of vector projection).
+	
+	proj is almost linear but instead of preserving vector scaling are independent of scaling, in the sense that they are functions $\pp$ for which $\pp(\vv, \ww) = \pp(\vv, c\ww)$ for all $c \in \R$.
+\end{theorem}
 
-Indeed, if there \textit{did} exist a function $\ff:\R^2 \rightarrow \R^2$ that were linear in both of its inputs, then we could construct a function just like $\proj$ by normalizing the second input:
+\begin{proof}
+	[TO DO]
+\end{proof}
 
-[shift over to sproj]
-[haven't fixed the following so that it's written in terms of sproj... that's the next thing to do]
+Any such function $(\vv, \ww) \mapsto \ff(\vv, \ww)$ can be expressed as $\ff(\vv, \ww) = \gg(\vv, \hww)$ for some $\gg:\R^2 \times \R^2 \rightarrow \R^2$ that is fully linear in both arguments; just define $\gg(\vv, \ww) := ||\ww|| \ff(\vv, \ww)$, and then $\gg$ has all of the linearity properties $\ff$ did, but, unlike $\ff$, preserves vector scaling.
 
+\begin{theorem}
+	If $\ff$ is a function that	has [those properties], then $\ff$ can be expressed as $\ff(\vv, \ww) = \gg(\vv, \hww)$, where $\gg:\R^2 \times \R^2 \rightarrow \R^2$ is linear in both inputs. 
+\end{theorem}
 
+\begin{proof}
+	[TO DO]
+\end{proof}
 
-proj(v, w) := B(v, w/||w||) for some almost-bilinear* B, where ||-|| is such that ||cw|| = |c| ||w||. Of course, we have to have a digression about length before getting to this:
+It turns out that knowing about this underlying function allows us to figure out a characterization of length!
 
-* it would only kind of preserve scaling in its second argument.
+\begin{defn}
+	(length axiom...). [This should be an axiom, not a defn... Or maybe it can be a defn. Maybe we're just fully specifying what the length function actually is now.]
+	
+	We would like length $||\cdot||$ be such that $||\vv|| = |\sproj(\vv, \hvv)|$. Right side is $|\sproj(\vv, \hvv)| = |\sproj(\vv, \vv)| = |\ff(\vv, \hvv)|$, so an equivalent condition is $||\vv|| = |\ff(\vv, \hvv)|$. Multiplying both sides by $||\vv||$ and using the linearity of $\ff$ in its second input, we get another equivalent condition, $||\vv||^2 = |\ff(\vv, \vv)|$.
+\end{defn}
 
+This leads to…
 
-If there existed a length function ||-||:R^2 -> (0, infty) satisfying ||cv|| = |c|||v|| then lproj(v, w) := ||w|| proj(v, w) would kind of preserve scaling.
-Proof. lproj(v, cw)| = ||cw|| proj(v, cw) = ||cw|| proj(v, w) = |c| ||w|| proj(v, w) = |c| lproj(v, w)
-Secretly know that proj(v, w) = ((v . w)/||w||) what. So lproj(v, w) = ||w|| proj(v, w) = (v . w) what. And this isn’t linear! Have to multiply by ||w|| again to make it so.
-Maybe we can still work with this absolute value weirdness? We have what we need to define unit vectors, which are the next step, and it seems kind of unmotivated to multiply by ||w|| again to get a linear map. Yes, it isn’t that much of a jump to realize ||w||^2 proj(v, w) preserves scaling, but I think we can do better.
-(Defn). We say v in R^2 is a unit vector iff lproj(v, v) = v. 
-Secretly, we know lproj(v, v) = (v . v) vhat = ||v||^2 vhat which is equal to v when v = vhat.
-(Thm). For every v in R^2, v/||v|| is a unit vector.
-Proof. lproj(v, v) = ||v|| proj(v, v) = ||v|| v. Since lproj is linear in the first argument, we can divide each side by ||v|| to obtain lproj(v/||v||, v) = proj(v, v).
-Knowing this allows us to give concrete form to ||-||.
-(Defn). When lproj(v, w) = cw + dw_perp, we define sproj(v, w) := c.
-(Defn). For v in R^2 we define ||v|| to be such that ||v|| = |sproj(v, v/||v||)| <=> ||v||^2 = sproj(v, v).
-Remember, we need to show ||cv|| = |c| ||v||. [TO DO]
-(Theorem). If v = a + b, where a is perpendicular to b, then ||v||^2 = ||a||^2 + ||b||^2.
-We have ||v||^2 = sproj(a, a) + sproj(a, b) + sproj(b, a) + sproj(b, b) = sproj(a, a) + sproj(b, b) = ||a||^2 + ||b||^2.
+\begin{theorem}
+	(Pythagorean theorem).
+	
+	If $\vv = \vv_{||} + \vv_{\perp}$, where $\vv_{||}$ and $\vv_{\perp}$ are perpendicular to each other, then $||\vv||^2 = ||\vv_{||}|| + ||\vv_{\perp}||^2$.
+\end{theorem}
+
+\begin{proof}
+	We have
+	
+	\begin{align*}
+		||\vv|| &= ||\vv_{||} + \vv_{\perp}|| \\
+		&= |\ff(\vv_{||} + \vv_{\perp}, \vv_{||} + \vv_{\perp})|
+	\end{align*}
+	
+	for some function $\ff:\R^2 \times \R^2$ that is linear in both of of its inputs. Then
+	
+	\begin{align*}
+		&|\ff(\vv_{||} + \vv_{\perp}, \vv_{||} + \vv_{\perp})| \\
+		= &|\ff(\vv_{||}, \vv_{||}) + \ff(\vv_{||}, \vv_{\perp}) + \ff(\vv_{\perp}, \vv_{||}) + \ff(\vv_{\perp}, \vv_{\perp})| \\
+		= &|\ff(\vv_{||}, \vv_{||}) + ||\vv_{\perp}|| \spc \proj(\vv_{||} \rightarrow \vv_{\perp}) + ||\vv_{||}|| \spc \proj(\vv_{\perp} \rightarrow \vv_{||}) + \ff(\vv_{\perp}, \vv_{\perp})| \\
+		= &|\ff(\vv_{||}, \vv_{||}) + \ff(\vv_{\perp}, \vv_{\perp})| \\
+		= &\text{somehow distribute the absolute value over the $+$, or maybe I made a mistake earlier...} \\
+		= &||\vv_{||}||^2 + ||\vv_{\perp}||^2.
+	\end{align*}
+\end{proof}
+
 And this leads to usual formula for magnitude!
 
 \subsection*{Length in $\R^n$}
