@@ -103,7 +103,7 @@ Here's an overview of the progress on the sections pertaining to the dot product
 \subsubsection*{Geometry in $\R^n$}
 
 \begin{itemize}
-	\item \textbf{Length in $\R^n$}: defines the usual Euclidean norm and then includes a bunch of stuff about isometries that is later necessary to define rotations in $\R^2$. \textit{Some proofs here about isometries need to be completed.}
+	\item \textbf{Length in $\R^n$}: defines the usual Euclidean norm and then includes a bunch of stuff about isometries that is later necessary to define rotations in $\R^2$. \textit{Done.}
 	\item \textbf{Angle in $\R^2$}: defines signed angle and unsigned angle. \textit{Has a couple proofs that need finishing and details that need checking, noted in the below ``More angle to-dos'', but the core concepts have been covered. Mostly done.} ...
 	\begin{itemize}
 		\item Add uses of the two types of angle (signed angle and unsigned angle) from intro of angle section to within angle section
@@ -117,7 +117,7 @@ Here's an overview of the progress on the sections pertaining to the dot product
 		\item End of angle section includes a ``For dot product section'' subsubsection; keep this in mind.
 	\end{itemize}
 	\item \textbf{Trigonometry in $\R^2$}: existence of circular coordinates ($\cos$, $\sin$) derived from existence theorem about signed angles \textit{Some minor details need finishing; essentially done.} \textit{Might even put this in appendix; see note at beginning of section for its true purpose.}
-	\item \textbf{Rotations in $\R^2$}: rotations are defined as preserving signed angle. At first, here, we can only define rotations in $\R^2$, since we don't yet have a notion of signed angle in $\R^n$. (But that is literally the only thing holding rotations back from being in $\R^n$. All other theorems proved about rotations apply to $\R^n$.) \textit{Need to finish proofs about rotation matrices.}
+	\item \textbf{Rotations in $\R^2$}: rotations are defined as preserving signed angle. At first, here, we can only define rotations in $\R^2$, since we don't yet have a notion of signed angle in $\R^n$. (But that is literally the only thing holding rotations back from being in $\R^n$. All other theorems proved about rotations apply to $\R^n$.) \textit{Need to prove one nice-to-have theorem (every linear function is an isometry iff it preserves length), but all necessary theorems are proved.}
 	\item \textbf{Projections in $\R^2$}: \textit{About halfway done.} ... \textit{make sure it's renamed to ``Projections in $\R^2$''}
 	\begin{itemize}
 		\item The beginning of this subsection includes an outline of how to define orthogonality and vector projections. Need to implement this outline.
@@ -226,7 +226,7 @@ I need to make sure that rotations are handled properly. Most of the below is im
 	\item We can also prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): $\{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\}$. 
 \end{enumerate}
 
-Recently, I changed the definition of rotation in $\R^2$ from ``function $\R^2 \rightarrow \R^2$ that preserves length, signed angle, and fixes the origin'', which is incorrect. What I really needed was distance preservation, not length preservation, and thus the definition of rotation in $\R^2$ as ``isometry on $\R^2$ that preserves signed angle'', and proved that such functions are affine. Make sure that this correct conception of rotation and the characterization of affineness is what's used and alluded to.
+Recently, I changed the definition of rotation in $\R^2$ from ``function $\R^2 \rightarrow \R^2$ that preserves length, signed angle, and fixes the origin'', which is incorrect. What I really needed was distance preservation, not length preservation, and thus the definition of rotation in $\R^2$ as ``isometry on $\R^2$ that preserves signed angle''. It's also important to note that such functions are affine. Make sure that this correct conception of rotation and the characterization of affineness is what's used and alluded to.
 
 \newpage
 
