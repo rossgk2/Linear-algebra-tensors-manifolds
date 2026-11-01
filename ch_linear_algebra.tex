@@ -2180,19 +2180,19 @@ The following special case of the above theorem follows immediately.
 
 \section{Geometry in $\R^n$}
 
-\subsection{Length in $\R^2$}
+\subsection*{Projections, perpendicularity, and length in $\R^2$}
 
-[Describe the interface to length, not the implementation]
+\subsubsection*{Abstract length in $\R^2$}
 
 \begin{defn}
-	[This should be an axiom, not a defn]
+	(Length). [This should be an axiom, not a defn]
 	
 	We will for the moment suppose that there exists a function $||\cdot||:\R^2 \rightarrow (0, \infty)$ satisfying
 		
 	\begin{enumerate}
 		\item $||\see_i|| = 1$ for all $i \in \{1, 2\}$
 		\item $||c\vv|| = |c| \spc ||\vv||$ for all $c \in \R$
-		\item ...
+		\item [hopefully we don't have to assume the triangle inequality. it wouldn't be the worst thing to have to assume. after all, the whole reason we even think to prove it is because it's so intuitive. it wouldn't surprise me if we have to assume it to prove that vector projections exist or something... but still, I hope not.]
 	\end{enumerate}
 \end{defn}
 
@@ -2212,7 +2212,7 @@ The following special case of the above theorem follows immediately.
 	We need to show that we do indeed have $||\hvv|| = 1$. Well, we have $||\hvv|| = \Big|\Big|\frac{\vv}{||\vv||}\Big|\Big| = \Big|\frac{1}{||\vv||}\Big| \spc ||\vv|| = \frac{1}{||\vv||} ||\vv|| = 1$, as desired.
 \end{proof}
 
-\subsection*{Projections in $\R^2$}
+\subsubsection*{Projection in $\R^2$}
 
 \begin{defn}
 	(Projection within a basis).
@@ -2226,13 +2226,37 @@ The following special case of the above theorem follows immediately.
 	Since the vector $c\ww$ can be considered to be the part of $\vv$ that lies in the direction of $\ww$, we call it the \textit{projection of $\vv$ onto $\ww$ within the basis $\{\ww, \uu\}$}.
 \end{defn}
 
-While, for each $\vv \in \R^2$, there is enough freedom that we can choose this projection to be whatever we want, at the same time it seems like there should be a unique one of these projections where $\ww$ and $\uu$ are configured in such a way that $c\ww$ represents how much $\ww$ is ``really'' in $\vv$, not how much $\ww$ is ``technically'' in $\vv$ when we allow $k$ and $\uu$ to compensate for a wild choice of $c\ww$. 
+While, for each $\vv \in \R^2$, there is enough freedom in $k$ and $\uu$ that we can choose the projection $c\ww$ to be whatever we want, at the same time it seems like there should be a unique one of these projections where $\ww$ and $\uu$ are configured in such a way that $c\ww$ represents how much $\ww$ is ``really'' in $\vv$, not how much $\ww$ is ``technically'' in $\vv$ when we force $k$ and $\uu$ to compensate for a wild choice of $c\ww$. 
 
-Since a multiple of $\ww$ can only get closer to $\vv$ by optimizing the component of $\vv$ in the $\ww$ direction, it makes sense to treat the multiple of $\ww$ that is closest to $\vv$ as the ``true'' component of $\vv$ in the $\ww$ direction.
+Now, the ``true`` component of $\vv$ in the direction of $\ww$ is $c^*\ww$ for some optimized value $c^*$ of $c$. We hypothesize that $\ww$ can only get closer to $\vv$ by optimizing how much it aligns with the ``true'' component of $\vv$ in the $\ww$ direction. If this is true, then $c\ww$ is maximally close to $\vv$ when it is maximally close- \textit{equal}- to that ``true'' component.
+
+\begin{remark}
+	[Important TO-DO:]
+	
+	To do a better job of this motivation, fill in the details of the following more explicit reasoning:
+	
+	\begin{center}
+		($c\ww$ has $c$ such that it's maximally close to $\vv$) \\ $\iff$ \\
+		($c\ww$ has $c$ such that it is the right balance of close to $c^*\ww$ and close to $k^*\uu^*$, depending on which one makes up more of $\vv$)
+	\end{center}
+	
+	we \textit{hypothesize} that the optimal choices $c^*$, $k^*$, and $\uu^*$ of $c$, $k$, and $\uu$ occur \textit{when the distance of $c\ww$ to $\vv$ doesn't depend on the distance from $c\ww$ to $k^*\uu^*$}
+	
+	if this is the case, then the above is equivalent to:
+	
+	\begin{center}
+			$c\ww$ has a $c$ such that it's maximally close to $c^*\ww$
+	\end{center}
+	
+	and thus an easy way to check if $c\ww$ is maximally close to $c^*\ww$ is to check if its maximally close to $\vv$
+	
+	[I wonder if there's any way to prove the hypothesis. but i doubt it. it's probably an axiom.]
+\end{remark}
 
 This motivates the following definition.
 
 \begin{defn}
+\label{ch::lin_alg::defn::vector_proj}
 	(Vector projection).
 	
 	For $\vv, \ww \in \R^2$, we define the \textit{projection} $\proj(\vv \rightarrow \ww)$ \textit{of $\vv$ onto $\ww$} to be $\proj(\vv \rightarrow \ww) := \min_{c \in \R} ||c\ww - \vv||$.
@@ -2243,10 +2267,10 @@ This motivates the following definition.
 \end{theorem}
 
 \begin{proof}
-	[TO DO]
+	[TO DO]. hopefully this doesn't require the triangle inequality. if it does then add that as one of our assumptions of abstract length.
 \end{proof}
 
-\subsection*{Perpendicularity}
+\subsubsection*{Perpendicularity in $\R^2$}
 
 \begin{defn}
 	(Perpendicularity).
@@ -2276,12 +2300,12 @@ This motivates the following definition.
 	If the multiple of w closest to v is 0, then the multiple of v closest to w is 0. [TO DO]
 \end{proof}
 
-\subsection*{Length}
+\subsubsection*{Concrete length in $\R^2$}
 
 \begin{theorem}
 	(Properties of vector projection).
 	
-	proj is almost linear but instead of preserving vector scaling are independent of scaling, in the sense that they are functions $\pp$ for which $\pp(\vv, \ww) = \pp(\vv, c\ww)$ for all $c \in \R$.
+	proj is almost linear. it's not linear because instead of preserving vector scaling it's independent of scaling, in the sense that it is a function $\pp$ for which $\pp(\vv, \ww) = \pp(\vv, c\ww)$ for all $c \in \R$.
 \end{theorem}
 
 \begin{proof}
@@ -2301,6 +2325,7 @@ Any such function $(\vv, \ww) \mapsto \ff(\vv, \ww)$ can be expressed as $\ff(\v
 It turns out that knowing about this underlying function allows us to figure out a characterization of length!
 
 \begin{defn}
+\label{ch::lin_alg::defn::length_in_R2}
 	(length axiom...). [This should be an axiom, not a defn... Or maybe it can be a defn. Maybe we're just fully specifying what the length function actually is now.]
 	
 	We would like length $||\cdot||$ be such that $||\vv|| = |\sproj(\vv, \hvv)|$. Right side is $|\sproj(\vv, \hvv)| = |\sproj(\vv, \vv)| = |\ff(\vv, \hvv)|$, so an equivalent condition is $||\vv|| = |\ff(\vv, \hvv)|$. Multiplying both sides by $||\vv||$ and using the linearity of $\ff$ in its second input, we get another equivalent condition, $||\vv||^2 = |\ff(\vv, \vv)|$.
@@ -2315,14 +2340,7 @@ This leads to…
 \end{theorem}
 
 \begin{proof}
-	We have
-	
-	\begin{align*}
-		||\vv|| &= ||\vv_{||} + \vv_{\perp}|| \\
-		&= |\ff(\vv_{||} + \vv_{\perp}, \vv_{||} + \vv_{\perp})|
-	\end{align*}
-	
-	for some function $\ff:\R^2 \times \R^2$ that is linear in both of of its inputs. Then
+	We have $||\vv|| = ||\vv_{||} + \vv_{\perp}|| = |\ff(\vv_{||} + \vv_{\perp}, \vv_{||} + \vv_{\perp})|$ for some function $\ff:\R^2 \times \R^2 \rightarrow \R^2$ that is linear in both of of its inputs. From here, we have
 	
 	\begin{align*}
 		&|\ff(\vv_{||} + \vv_{\perp}, \vv_{||} + \vv_{\perp})| \\
@@ -2338,18 +2356,11 @@ And this leads to usual formula for magnitude!
 
 \subsection*{Length in $\R^n$}
 
-\begin{defn}
-\label{ch::lin_alg::defn::length_in_R2}
-	(Length of a vector in $\R^2$).
-	
-	For $\vv \in \R^2$, we define the \textit{length} (or \textit{magnitude}) of $\vv$ to be the length of any line segment that can be made to perfectly coincide with $\vv$. We denote the length of $\vv \in \R^2$ by $||\vv||$.
-\end{defn}
-
 \begin{theorem}
 	\label{ch::lin_alg::thm::length_in_R2}
 	(Length of a vector in $\R^2$).
 	
-	Let $\vv \in \R^2$. If we express $\vv$ in the standard basis as $\vv = ([\vv]_\sE)_1 \see_1 + ([\vv]_\sE)_2 \see_2$, we can think of $([\vv]_\sE)_1 \see_1$, $([\vv]_\sE)_2 \see_2$, and $\vv$ as the base, height, and hypotenuse of a right triangle. From the Pythagorean Theorem, we know that the lengths of these triangle sides are related by $([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2 = ||\vv||^2$. Thus,
+	[Use the Pythagorean theorem]
 	
 	\begin{align*}
 		||\vv|| = \sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}.
@@ -3260,37 +3271,6 @@ Since rotations in $\R^2$ are affine, rotations in $\R^2$ about the origin are l
 \end{proof}
 
 \subsection*{Projections in $\R^2$}
-
-\begin{defn}
-\label{ch::lin_alg::defn::vector_proj}
-    (Vector projection in $\R^2$).
-    
-    Outline:
-    \begin{itemize}
-        \item Defn. The \textit{unsigned angle between a vector $\vv \in \R^2$ and a line in $\R^2$ through the origin equal to $\spann(\ww)$ for some $\ww \in \R^2$} is defined to be $\min_{\tww \in \spann(\ww)} \theta_u(\vv, \tww)$. Because [...] this is equal to $\min(\theta_u(\vv, \tww), \theta_u(\vv, -\tww))$.
-        \item Thm. This notion of unsigned angle is symmetric.
-        \item Defn. Two vectors in $\R^2$ are said to be \textit{orthogonal}, or \textit{perpendicular}, if the direction vector of one is as different from the ``direction line''  of the other as possible, i.e. if the unsigned angle between $\vv$ and $\spann(\ww)$ is maximized.
-        \begin{itemize}
-            \item Find where orthonormal bases are defined for $n$-dimensional inner product spaces, and change that definition so it is in terms of rotations. Then prove that all orthonormal bases satisfy the usual condition $\langle \huu_i, \huu_j \rangle = \delta_{ij}$.
-        \end{itemize}
-        \item If $\vv \in \R^2$ and $\vv_\perp$ is orthogonal to $\vv$ then $\hvv_\perp = \widehat{\vv_\perp}$.
-        \item Remark. (Orthogonality is symmetric). Note that $\vv$ is orthogonal to $\ww$ iff $\ww$ is orthogonal to $\vv$.
-        \item Thm. For every $\vv \in \R^2$ there exists $\vv_\perp \in \R^2$ that is orthogonal to $\vv$.
-        \begin{itemize}
-            \item Proof. Let $t$ be such that $\RR_t(\see_1) = \vv$. Then $\RR^{-1}$ is a rotation taking $\see_1$ to $\hvv$ and taking $\RR(\see_2)$ to $\see_2$. Thus $\vv_\perp = \RR(\see_2)$ is orthogonal to $\vv$.
-        \end{itemize}
-        \item Thm. If $\vv, \vv_\perp \in \R^2$ and $\vv_\perp$ is orthogonal to $\vv$, then $\{\vv, \vv_\perp\}$ is a basis for $\R^2$.
-        \begin{itemize}
-            \item Proof. See older versions of this book for the proof.
-        \end{itemize}
-        \item Let $\vv, \ww, \ww_\perp \in \R^2$, where $\ww_\perp$ is orthogonal to $\ww$. Since $\{\ww, \ww_\perp\}$ is a basis for $\R^2$ we have $\vv = v_{||} \hww + v_\perp \hww_\perp$ for some $v_{||}, v_\perp \in \R$. We define the \textit{(orthogonal) projection} $\proj(\vv \rightarrow \ww)$ \textit{ of $\vv$ onto $\ww$} to be $\proj(\vv \rightarrow \ww) := v_{||} \hww$, and define the the \textit{signed magnitude of the vector projection $\sproj(\vv \rightarrow \ww)$ of $\vv$ onto $\ww$} to be $\sproj(\vv \rightarrow \ww) := v_{||}$.
-        \item Thm. $\vv, \ww \in \R^2$ are orthogonal iff $\theta_u(\vv, \ww) = \frac{\pi}{2}$ iff $\proj(\vv \rightarrow \ww) = \mathbf{0}$.
-    \end{itemize}
-\end{defn}
-
-\begin{remark}
-    Note that, for $\vv, \ww \in \R^2$, we have $\proj(\vv \rightarrow \ww) = \proj(\vv \rightarrow \hww)$ because $\hat{\hww} = \hat{\ww}$.
-\end{remark}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::vector_proj_Signed_magnitude}

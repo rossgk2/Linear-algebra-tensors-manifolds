@@ -103,9 +103,11 @@ Here's an overview of the progress on the sections pertaining to the dot product
 \subsubsection*{Geometry in $\R^n$}
 
 \begin{itemize}
-	\item \textbf{Length in $\R^n$}: defines the usual Euclidean norm and then includes a bunch of stuff about isometries that is later necessary to define rotations in $\R^2$. \textit{Some proofs here about isometries need to be completed.}
-	\item \textbf{Angle in $\R^2$}: defines signed angle and unsigned angle. \textit{Has a couple proofs that need finishing and details that need checking, noted in the below ``More angle to-dos'', but the core concepts have been covered. Mostly done.} ...
+	\item \textbf{Projections, perpendicularity, and length in $\R^2$}: this is the newest section. It defines projections as the most fundamental object of geometry, and then derives notions of perpendicularity and length from them. \textit{No longer do we have to rely on Ancient Greek proofs of the Pythagorean theorem!} I need to add these smaller theorems to this section somewhere:
+	\item \textbf{Length in $\R^n$}: derives the usual Euclidean norm and then includes a bunch of stuff about isometries that is later necessary to define rotations in $\R^2$. \textit{Rewrite the proof of the formula for $||\vv||$, Theorem ref{ch::lin_alg::thm::length_in_R2}, to use the more formally established version of the Pythagorean theorem. Some proofs here about isometries also need to be completed.}
+	\item \textbf{Angle in $\R^2$}: defines signed angle and unsigned angle. \textit{Has a couple proofs that need finishing and details that need checking, noted in the below ``More angle to-dos'', but the core concepts have been covered. Mostly done.} \\ \textit{Also... I really feel like there are only a couple results derived from the angle section that are really used... like signed angle, unsigned angle, and $-t \bmod 2\pi = 2\pi - t$. I wonder if I can put most of that section in the appendix...}
 	\begin{itemize}
+		\item Pretty important: change notation for angle function from $\theta$ to $\Theta$, so that we can use $\theta$ instead of $t$ for values of angles.
 		\item Add uses of the two types of angle (signed angle and unsigned angle) from intro of angle section to within angle section
 		\item Cleanup
 		\begin{itemize}
@@ -118,11 +120,19 @@ Here's an overview of the progress on the sections pertaining to the dot product
 	\end{itemize}
 	\item \textbf{Trigonometry in $\R^2$}: existence of circular coordinates ($\cos$, $\sin$) derived from existence theorem about signed angles \textit{Some minor details need finishing; essentially done.} \textit{Might even put this in appendix; see note at beginning of section for its true purpose.}
 	\item \textbf{Rotations in $\R^2$}: rotations are defined as preserving signed angle. At first, here, we can only define rotations in $\R^2$, since we don't yet have a notion of signed angle in $\R^n$. (But that is literally the only thing holding rotations back from being in $\R^n$. All other theorems proved about rotations apply to $\R^n$.) \textit{Need to finish proofs about rotation matrices.}
-	\item \textbf{Projections in $\R^2$}: \textit{About halfway done.} ... \textit{make sure it's renamed to ``Projections in $\R^2$''}
+	\item \textbf{Some projections reorganizing}: decide if these theorems should go in the earlier or later ``Projections in $\R^2$ section. \textit{To figure this out, finish the proofs of the theorems in the later section and see what they need.}
 	\begin{itemize}
-		\item The beginning of this subsection includes an outline of how to define orthogonality and vector projections. Need to implement this outline.
-		\item The end of this subsection has an unfinished proof that $\sproj(\vv \rightarrow \ww) = \sproj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. Finish that!
-		\item Otherwise, the subsection is complete.
+		\item Thm. If $\vv \in \R^2$ and $\vv_\perp$ is perpendicular to $\vv$ then $\hvv_\perp = \widehat{\vv_\perp}$. \textit{Maybe the ``projections commute with rotations'' result needs this?}
+		\item Thm. For every $\vv \in \R^2$ there exists $\vv_\perp \in \R^2$ that is perpendicular to $\vv$. \textit{Maybe the ``projections commute with rotations'' result needs this?}
+		\item Thm. If $\vv, \vv_\perp \in \R^2$ and $\vv_\perp$ is perpendicular to $\vv$, then $\{\vv, \vv_\perp\}$ is a basis for $\R^2$. \textit{This is definitely nice to have, but not sure it's needed anywhere.}
+	\end{itemize}
+	\item \textbf{Projections in $\R^2$}: \textit{the content of this section, except for a couple theorems, is now implemented in the earlier ``Projections in $\R^2$'' section. I should probably fold the few results in this section that remain into other existing sections...}
+	\begin{itemize}
+		\item Make sure to prove that $\vv, \ww \in \R^2$ are perpendicular iff $\theta_u(\vv, \ww) = \frac{\pi}{2}$ iff $\proj(\vv \rightarrow \ww) = \mathbf{0}$. \textit{This can probably go in ``Angle in $\R^2$''.}
+		\item The end of this subsection has an unfinished proof that $\sproj(\vv \rightarrow \ww) = \sproj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. Finish that! \textit{This can probably go in ``Rotations in $\R^2$''.}
+		\begin{itemize}
+			\item This result might require a proof of this theorem, copied from the earlier ``Projections in $\R^2$'' to-do: for every $\vv \in \R^2$ there exists $\vv_\perp \in \R^2$ that is perpendicular to $\vv$.
+		\end{itemize}
 	\end{itemize}
 	\item Dot product subsection
 	\begin{itemize}
