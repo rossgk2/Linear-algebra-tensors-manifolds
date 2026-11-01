@@ -5,15 +5,23 @@
 \begin{theorem}
     (Division).
 
-    For all $a, n \in \Z$ with $a > n$ there exist $q \in \Z$ and $r \in \Z \cap [0, q)$ such that $\frac{a}{n} = q + \frac{r}{n}$. The number $q$ is called the \textit{quotient}, and the number $r$ is called the \textit{remainder}. The remainder involved in the division of $a$ by $n$ is also called \textit{$a$ modulo $n$}, and is denoted $a \bmod n$. Therefore $\frac{a}{n} = q + \frac{a \bmod n}{n}$.
+    For all $a, n \in \Z$ there exist $q \in \Z$ and $a \bmod n \in \Z \cap [0, n)$ such that 
+    
+    \begin{align*}
+    	\frac{a}{n} = q + \frac{a \bmod n}{n}.
+    \end{align*}
+    
+    The number $q$ is called the \textit{quotient}. The number $a \bmod n$ is called the \textit{modulo (with respect to $n$)}, or \textit{remainder}; it is read as ``$a$ modulo $n$''.
 \end{theorem}
 
 \begin{proof}    
     ...reference some standard textbook...
 \end{proof}
 
+It turns out that the modulo operation is useful for modeling cyclical sequences.
+
 \begin{example}
-    (Modulo cycles).
+    (A cyclical sequence).
 
     \begin{align*}
         0 \bmod 4 = 0 \\
@@ -26,38 +34,34 @@
         7 \bmod 4 = 3 \\
         8 \bmod 4 = 0
     \end{align*}
-\end{example}
+\end{example} 
 
-\begin{remark}
-    (Moduli of negative integers).
-    
-    Let $n \in \Z$ be a positive integer. Take care to remember that computing the modulus of a negative integer relative to $n$ may seem counterintuitive, since for $a, n \in \Z$ with $a > 0$ then usually\footnote{Specifically, this holds for all $a$ with $a \bmod n \neq 0$.} $(-a) \bmod n \neq -(a \bmod n)$.
+Solving the equation of the previous theorem for the modulus yields a neat characterization.
 
-    Let's think about $-a \bmod n$ for positive $a \in \Z$. From above, we have $\frac{a}{n} = q + \frac{a \bmod n}{n}$. That is, $a = nq + r = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. Since $a \bmod n = nq - a$, we have
-
-    \begin{align*}
-        a \bmod n = (\text{greatest integer multiple of $n$ that is less than $a$}) - a.
-    \end{align*}
-
-    Even more explicitly,
-
-    \begin{align*}
-        a \bmod n = 
-        \begin{cases}
-            (\text{greatest integer multiple of $n$ that is less than $a$}) - |a| & a \geq 0 \\
-            (\text{greatest integer multiple of $n$ that is less than $a$}) + |a| & a < 0
-        \end{cases}.
-    \end{align*}
-
-    When $a > 0$, the greatest integer multiple of $n$ that is less than $a$ is closer to $0$ than $a$, and when $a < 0$, this same multiple is further from $0$ than $a$. So you might say that computing $a \bmod n$ involves undershooting when $a > 0$ and overshooting when $a < 0$.
-\end{remark}
+\begin{deriv}
+	(Expression for moduli).
+	
+	Let $a, n \in \Z$. Multiplying both sides of the equation of the previous theorem by $n$, we see that there exist $q \in \Z$ and $a \bmod n \in \Z \cap [0, n)$ such that $a = qn + a \bmod n$. Solving for the modulo, we have
+	
+	\begin{align*}
+		a \bmod n = a - qn.
+	\end{align*}
+	
+	In order for $a \bmod n$ to be in $[0, n)$, it must be the case that $qn$ is the greatest integer multiple of $n$ that is less than $a$. (If $q$ weren't the maximal $u \in \Z$ for which $a - un \geq 0$, we'd have $q = u - v$ for some positive $v \in \Z$, which would give $a \bmod n = a - qn = \underbrace{(a - un)}_{\geq 0} + vn \geq vn \geq n$, meaning $a \bmod n \notin [0, n)$, a contradiction).
+	
+	Therefore, for $a, n \in \Z$,
+	
+	\begin{align*}
+		a \bmod n = a - (\text{greatest integer multiple of $n$ less than $a$}).
+	\end{align*}
+\end{deriv}
 
 The division theorem, and therefore the modulo concept, can be extended to the case when the numbers being divided are both real numbers.
 
 \begin{theorem}
     (Extended division).
 
-    For all $x, T \in \R$ with $x > T$ there exist $q \in Z$ and $x \bmod T \in [0, q)$ such that $\frac{x}{T} = q + \frac{x \bmod T}{T}$. As before, $q$ is called the \textit{quotient}, and $x \bmod T$, which is read as \textit{$x$ modulo $T$}, is called the \textit{remainder}.
+    For all $x, T \in \R$ there exist $q \in \Z$ and $x \bmod T \in [0, n)$ such that $\frac{x}{T} = q + \frac{x \bmod T}{T}$. As before, $q$ is called the \textit{quotient}, and $x \bmod T$, which is read as \textit{$x$ modulo $T$}, is called the \textit{remainder}.
 \end{theorem}
 
 The following theorem making use of a modulus obtained from extended division comes in useful in Chapter \ref{ch::lin_alg} when investigating angle.
@@ -101,7 +105,7 @@ Here we present a derivation of dual spaces that emphasizes the core duality ide
     
     \begin{align*}
     	&\ff:V \rightarrow W \text{, acting on $\vv$}\\
-    	&\FF_{\vv}:\{\text{functions $V \rightarrow W$}\} \rightarrow W \text{, acting on $\ff$}.
+    	&\FF_{\vv}:\{\text{functions $V \rightarrow W$}\} \rightarrow W \text{, acting on $\ff$}
    	\end{align*}
    	
    	To make the notation easier, we define $V^* := \{\text{functions $V \rightarrow W$}\}$. The above can then be restated as

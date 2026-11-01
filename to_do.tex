@@ -10,11 +10,21 @@ More things about this book that are original that I should call attention to:
     \item Organization of four fundamental isomorphisms for tensors
     \item Story of diff forms, once I've finished ch\_diff\_forms\_investigation.tex
     \item Using dual spaces to organize the theorem about coordinates of vectors and covectors in a chart (Theorem \ref{ch::manifolds::thm::induced_bases_in_a_chart})
+    \item The untangling of the usually tangled story of geometry in $\R^n$: length, the triangle inequality and Cauchy-Schwarz, signed angle, $2$-rotations, projections, the dot product... and then later the determinant and orientation.
+    \item After I've added the stuff from the ``Big new idea'' in the ``Dual spaces'' section of this to-do- an introduction to dual spaces as something actually possessing duality.
 \end{itemize}
 
 \section*{Standardize theorem and proof style}
 
 \begin{itemize}
+    \item Maybe move away from using punctuation like , and . in equations
+    \item Niceties:
+    \begin{itemize}
+    	\item Use \textbackslash begin\{theorem*\}[Theorem title] instead of \textbackslash begin\{theorem*\} (Theorem title).
+    	\item Use \textbackslash \textbackslash instead of \textbackslash spc.
+    	\item Use \textbackslash | instead of ||.
+    	\item Use \textbackslash emph for proof by cases.
+    \end{itemize}
     \item Statement of hypotheses.
     \begin{itemize}
         \item Possible styles:
@@ -35,6 +45,7 @@ More things about this book that are original that I should call attention to:
         \item shorthand: “If $f$ has <most relevant hypothesis from theorem statement>, then blah blah blah…” 
     \end{itemize}
     \item Go through the book and use fullindent command
+    \item Go through book and see if there are chains of logical equivalence with $\iff$ that could benefit from the way the alignat environment is used in the proof of the triangle inequality in the appendix.
     \item Which equations should be in the align environment and which should be inline?
     \item Which align environment equations should have ``for all $x$'' inside them, like
 
@@ -42,12 +53,13 @@ More things about this book that are original that I should call attention to:
         y = f(x) \text{ for all $x$},
     \end{align*}
     
-    and which equations should have ``for all $x$'' after the equation, in inline text?
+    and which equations should have ``for all $x$'' before or after the equation, in inline text?
     \item Don't explicitize objects if their explicitization isn't need in the theorem statement. Explicitize them in the proof only as necessary. (e.g. don't state "let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$ if it is not necessary to have explicit descriptions of the basis vectors.
     \begin{itemize}
         \item Especially, don't state "let $V$ be a vector space over a field $K$" if $K$ is not needed in the theorem statement. Instead, say "let $K$ be the field under $V$" in the proof.
         \item Add a definition of \textit{under $K$} in the definition of vector space over $K$.
     \end{itemize}
+    \item Are there places in the book where it's better for the lemma to come after the theorem? See the proof of the triangle inequality in the appendix for a good example.
     \item Add more explanatory text in-between definitions, lemmas, theorems where needed.
 \end{itemize}
 
@@ -86,11 +98,13 @@ I've done a lot of work to reimplement this best approach, and, as I've worked o
 
 Here's an overview of the progress on the sections pertaining to the dot product and related matters, so that I can remember when have time to work on this again:
 
-\subsubsection*{Geometry in $\R^2$}
+\textbf{Here's the new way I've come up with to organize the split between concepts applicable to $\R^2$ and concepts applicable to $\R^n$.} Previously, I had an ``$\R^2$'' section, with all of the concepts treated for $\R^2$, and then an ``$\R^n$'' section, with those same concepts treated for $\R^n$. I think it's better to just call the overarching section ``Geometry in $\R^n$'' and to go into as much specificity as possible (i.e. $\R^n$ if possible, $\R^2$ if not) so that it's not necessary to do a bunch of restating and then ``The proof is similar to the one for $\R^2$'' in a section on $\R^n$.
+
+\subsubsection*{Geometry in $\R^n$}
 
 \begin{itemize}
-	\item Length subsection: very short, defines the usual Euclidean norm. There's a great inductive derivation of the Euclidean norm later on that should be copy-pasted into this subsection (see ``Geometry in $\R^n$'' below). \textit{Pretty much complete! just needs a copy-paste.}
-	\item Angle subsection: defines signed angle and unsigned angle. \textit{Has a couple proofs that need finishing and details that need checking, noted in the below ``More angle to-dos'', but the core concepts have been covered. Mostly done.} 
+	\item \textbf{Length in $\R^n$}: defines the usual Euclidean norm and then includes a bunch of stuff about isometries that is later necessary to define rotations in $\R^2$. \textit{Some proofs here about isometries need to be completed.}
+	\item \textbf{Angle in $\R^2$}: defines signed angle and unsigned angle. \textit{Has a couple proofs that need finishing and details that need checking, noted in the below ``More angle to-dos'', but the core concepts have been covered. Mostly done.} ...
 	\begin{itemize}
 		\item Add uses of the two types of angle (signed angle and unsigned angle) from intro of angle section to within angle section
 		\item Cleanup
@@ -102,9 +116,9 @@ Here's an overview of the progress on the sections pertaining to the dot product
 		\end{itemize}
 		\item End of angle section includes a ``For dot product section'' subsubsection; keep this in mind.
 	\end{itemize}
-	\item Rotations subsection: rotations are defined as preserving signed angle. \textit{Pretty much complete! only one very easy result needs to be proved.}
-	\item Trigonometry subsection: existence of circular coordinates ($\cos$, $\sin$) derived from existence theorem about signed angles \textit{Some minor details need finishing; essentially done.}
-	\item Projections subsection. \textit{About halfway done.}
+	\item \textbf{Trigonometry in $\R^2$}: existence of circular coordinates ($\cos$, $\sin$) derived from existence theorem about signed angles \textit{Some minor details need finishing; essentially done.} \textit{Might even put this in appendix; see note at beginning of section for its true purpose.}
+	\item \textbf{Rotations in $\R^2$}: rotations are defined as preserving signed angle. At first, here, we can only define rotations in $\R^2$, since we don't yet have a notion of signed angle in $\R^n$. (But that is literally the only thing holding rotations back from being in $\R^n$. All other theorems proved about rotations apply to $\R^n$.) \textit{Need to finish proofs about rotation matrices.}
+	\item \textbf{Projections in $\R^2$}: \textit{About halfway done.} ... \textit{make sure it's renamed to ``Projections in $\R^2$''}
 	\begin{itemize}
 		\item The beginning of this subsection includes an outline of how to define orthogonality and vector projections. Need to implement this outline.
 		\item The end of this subsection has an unfinished proof that $\sproj(\vv \rightarrow \ww) = \sproj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. Finish that!
@@ -115,9 +129,14 @@ Here's an overview of the progress on the sections pertaining to the dot product
 		\item Proof of geometric $\implies$ algebraic subsubsection - \textit{seems complete; just needs commentary.}
 		\item Proof of geometric $\impliedby$ algebraic subsubection - \textit{almost done, just needs simplification of the ``preserved quantities'' theorem.}
 		\begin{itemize}
-			\item Requires knowing that algebraic dot product is preserved by rotation. currently, a ``preserved quantities'' Theorem is at the beginning of the subsubsection. I got a little lost here, and didn't realize that it's simple: ``if length is preserved, then since algebraic dot product is a function of length, so is algebraic dot product''. since rotations preserve length they preserve algebraic dot product. so, really only a single line of the stated preserved quantities theorem is needed. State that as a lemma and find a better place for the preserved quantities theorem.
+			\item Requires knowing that algebraic dot product is preserved by rotation. currently, a ``preserved quantities'' Theorem is at the beginning of the subsubsection. I got a little lost here, and didn't realize that it's simple: ``if length is preserved, then since algebraic dot product is a function of length, so is algebraic dot product''. since rotations are isometries they preserve algebraic dot product. so, really only a single line of the stated preserved quantities theorem is needed. State that as a lemma and find a better place for the preserved quantities theorem.
 			\item Remove the remark after the preserved quantities theorem.
 		\end{itemize}
+	\end{itemize}
+	\item Misc
+	\begin{itemize}
+		\item Fix missing \\ref\{ch::lin\_alg::thm::dot\_prod\_and\_angle\}
+		\item Make definition of $\theta$ in "Length and orthogonality with respect to an inner product" is consistent with notions of signed and unsigned angle
 	\end{itemize}
 \end{itemize}
 
@@ -166,33 +185,6 @@ Define orientation in $\R^n$ by making use of projections onto standard basis. T
 
 The key to my approach is to realize the importance of signed angle. My approach is guided by the overarching principle that the relationship between orientation and signed angle should always be this: orientation is the sign of signed angle.
 
-\subsection*{Possible approach using the $n$-sphere}
-
-In the above new approach, $n$-dimensional unsigned angle emerges from the dot product (as before), and $n$-dimensional orientation emerges from 2-dimensional orientation.
-
-For a while, though, I was interested in a more general treatment that defined $n$-dimensional \textit{signed} angle, and thus unified unsigned angle and orientation, since signed angle is the product of these two. The idea was, since $2$-dimensional signed angle is arclength on one of two parameterizations of a 2-sphere, maybe $n$-dimensional signed angle could be arclength on a particular parameterization of an $n$-sphere.
-
-I found implementing this idea to be difficult. Yes, things are easy on a 2-sphere, since there are only two unit-speed parameterizations of the path between two points on a 2-sphere. But on an $n$-sphere, there are infinitely many such paths.
-
-Because of this difficulty I resorted to splitting up the definition of signed angle into a definition of unsigned angle and a definition of orientation. This would make things similar to before, except at least now, hopefully each of these definitions would have something to do with $n$-spheres.
-
-\begin{itemize}
-	\item I came up with a definition of unsigned angle that does have something to do with $n$-spheres: ``unsigned angle is the minimal arclength between two points on an $n$-sphere''. (One can use the EL equations to prove that the curve of minimal length between two points on an n-sphere is a ``great circle''.)
-	\item And, because I was getting lost in the complexity of all of this, I came up with a definition of the orientation of an ordered basis of two vectors that doesn't really have anything to do with $n$-spheres, and relies on the definition of orientation in $\R^2$: ``The orientation of an ordered basis of vectors $\vv, \ww \in \R^n$ is a tuple of signs, the $i$th sign being $\text{orn}\Big(\proj(\vv, \spann(\see_i, \see_{i + 1})), \proj(\ww, \spann(\see_i, \see_{i + 1}))\Big)$.''
-\end{itemize}
-
-After taking a step back, I'm wondering if there might actually be a way to handle the difficulty of there being infinitely many unit-speed parameterizations of the $n$-sphere.
-
-Maybe one could define an equivalence relation on parameterizations, so that two of them are considered to be equal if their arclength functions are the same, and so that the negation of a parameterization is its reverse parameterization.
-
-Three things have to be shown at this point: (1) orthonormalization preserves orientation, (2) rotation preserves orientation, and (3) the antisymmetry property of ordered bases' orientations. (Perhaps slight rephrasings of these facts more amenable to this presentation will be required. Though, it doesn't seem like that much rephrasing will be necessary...)
-
-I suspect that (1) is taken care of, since one uses orthonormal coordinate systems when considering parameterizations.
-
-Maybe (2) comes into play in showing that the signed angle between $\vv\in \R^3$ and $\ww \in \R^3$ can be computed by rotating $\spann(\vv, \ww)$ so that the image of $\vv$ aligns with $\see_1$ and the image of $\ww$ aligns with some vector in $\spann(\see_1, \see_2)$; then $2$-dimensional orientation can be invoked. (This would require defining $2$-dimensional rotations in $\R^n$, which is easy to do.) So, the usefulness of rotation preserving the equivalence relation would be that the computation of $\theta_s(\vv, \ww)$ for $\vv, \ww \in \R^3$ is equal to $\theta_s(\RR(\vv), \RR(\ww))$ for $\RR(\vv), \RR(\ww) \in \R^2$. Maybe a similar thing can be done with vectors in $\R^n$.
-
-If this is true, then (3) follows once everything is reduced to the case of $\R^2$, since (3) is true in $\R^2$.
-
 \subsection*{GitHub rant}
 
 I need to improve the rant about orientation in tensors GitHub readme, adding bits about how defn of rotations gets negatively affected by the typical tangle. The typical approach is:
@@ -222,16 +214,19 @@ When both the dot product and orientation sections are done, I want to make some
 I need to make sure that rotations are handled properly. Most of the below is implemented, but I need to make sure that the items (5) - (9) from the below are represented in ``Rotations in $n$ dimensions'', which is right after the presentation of orientation is finished.
 
 \begin{enumerate}
-	\item Define rotation in $\R^2$: a function $\R^2 \rightarrow \R^2$ is a \textit{rotation in $\R^2$} iff it preserves length, signed angle, and fixes the origin.
+	\item Define rotation in $\R^2$: a function $\R^2 \rightarrow \R^2$ is a \textit{rotation in $\R^2$} iff it is an isometry that preserves signed angle and fixes the origin.
 	\item Derive matrix of a rotation in $\R^2$.
 	\item (Compositions of 2-rotations are used in orientation section).
 	\item Generalize unsigned angle via the dot product; generalize the sign of signed angle, which is orientation, by finding an equivalent characterization of orientation that easily generalizes (see ``New approach'' in above ``Orientation'' subsection).
 	\item Define signed angle in $\R^n$: $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$.
-	\item Define rotation in $\R^n$: a function $\R^n \rightarrow \R^n$ is a \textit{rotation in $\R^n$} iff it preserves length, singed angle, and fixes the origin.
-	\item Prove that $\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^n$ that preserve length and orientation} \}$
-	\item Of course we have $\{\text{linear functions on $\R^n$ that preserve length and orientation}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$. So $\{\text{rotations in $\R^n$}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$.
+	\item Define rotation in $\R^n$: a function $\R^n \rightarrow \R^n$ is a \textit{rotation in $\R^n$} iff is an isometry that preserves singed angle.
+	\item Prove that $\{\text{rotations in $\R^n$}\} = \{ \text{affine functions on $\R^n$ that preserve length and orientation} \}$
+	\item In particular $\{\text{rotations about $\mathbf{0}$ in $\R^n$}\} = \{ \text{linear functions on $\R^n$ that preserve length and orientation} \}$.
+	\item Of course we have $\{\text{linear functions on $\R^n$ that preserve length and orientation}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$. So $\{\text{rotations about $\mathbf{0}$ in $\R^n$}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$.
 	\item We can also prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): $\{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\}$. 
 \end{enumerate}
+
+Recently, I changed the definition of rotation in $\R^2$ from ``function $\R^2 \rightarrow \R^2$ that preserves length, signed angle, and fixes the origin'', which is incorrect. What I really needed was distance preservation, not length preservation, and thus the definition of rotation in $\R^2$ as ``isometry on $\R^2$ that preserves signed angle'', and proved that such functions are affine. Make sure that this correct conception of rotation and the characterization of affineness is what's used and alluded to.
 
 \newpage
 
@@ -447,6 +442,14 @@ At the very least, make sure there's a remark on how the solution set to a syste
     \item Since $\{\text{solns}\} = \ker(\AA) + \{\vv_p\}$ then it must be true that $\rref(\AA | \bb) = (\rref(\AA) | \vv_p)$. Must $\vv_p$ be unique? Yes. (Because there exists a product $\EE$ of elementary matrices such that $\rref(\AA) = \EE \AA$; we have $\vv_p = \EE \bb$. So, might be best to start chapter with solving equations with augmented matrices rather than the theoretical result solns = $\{\text{solns}\} = \ker(\AA) + \{\vv_p\}$, since the former result secretly includes the later.
 \end{itemize}
 
+\section*{Dual spaces}
+
+\textbf{Big new idea}: add a ``Duality'' section after the ``Multilinear functions and tensor product spaces'' section and before the ``Introduction to $(p, q)$ tensors'' section. Now that I know about how to introduce dual spaces really intuitively from the perspective of duality, I think that this is a better introduction than just seeing dual spaces fall out of the decomposition of a linear function. That decomposition certainly explains why $\LLLL(V \rightarrow K)$ is important, but not why functionalizing it in a definition $V^* := \LLLL(V \rightarrow K)$ is intuitive. The intuitive duality introduction does. And this way, by the time we come across $\LLLL(V \rightarrow K)$ in the decomposition, we are already familiar with it. Here's the outline:
+\begin{itemize}
+	\item Follow the argument from ``Another perspective on dual spaces'', except for the part that makes use of natural isomorphisms from later in this chapter.
+	\item In place of that part, use a dimensionality argument. We have $(V^*)^* := \LLLL(\LLLL(V \rightarrow W) \rightarrow W)$, and so for finite-dimensional spaces we have $\dim((V^*)^*) = \dim(\LLLL(V \rightarrow W))\dim(W) = \dim(V)\dim(W)^2$. Thus if we want $(V^*)^* \cong V$ we need $\dim(W) = 1$.
+\end{itemize}
+
 \section*{Tensors}
 
 Basic fixes:
@@ -457,12 +460,6 @@ Basic fixes:
 	Then, add a remark about how one can more formally construct tensor and wedge product spaces by using $F(V \times W)/\sim$ for various $\sim$. See Warner for how to do this, and add a section on quotient vector spaces and $F(V \times W)/\sim$ to the appendix. 
     \item Check if remark on covariance and contravariance is correct in light of the fact that I’ve shown vectors transform with $[\EE]_F$ and covectors transform with its transpose inverse. Aren’t covectors supposed to be the ones that transform with the matrix that isn’t a transpose inverse? Maybe the answer is that the change of basis matrix is considered to be the one containing the vectors from the new basis taken relative to the old basis, i.e. $[\FF]_E$.
     \item Why is it necessary that covector components be indexed oppositely to covectors? Same question goes for vector components and vectors.
-\end{itemize}
-
-\textbf{Big new idea}: add a ``Duality'' section after the ``Multilinear functions and tensor product spaces'' section and before the ``Introduction to $(p, q)$ tensors'' section. Now that I know about how to introduce dual spaces really intuitively from the perspective of duality, I think that this is a better introduction than just seeing dual spaces fall out of the decomposition of a linear function. That decomposition certainly explains why $\LLLL(V \rightarrow K)$ is important, but not why functionalizing it in a definition $V^* := \LLLL(V \rightarrow K)$ is intuitive. The intuitive duality introduction does. And this way, by the time we come across $\LLLL(V \rightarrow K)$ in the decomposition, we are already familiar with it. Here's the outline:
-\begin{itemize}
-	\item Follow the argument from ``Another perspective on dual spaces'', except for the part that makes use of natural isomorphisms from later in this chapter.
-	\item In place of that part, use a dimensionality argument. We have $(V^*)^* := \LLLL(\LLLL(V \rightarrow W) \rightarrow W)$, and so for finite-dimensional spaces we have $\dim((V^*)^*) = \dim(\LLLL(V \rightarrow W))\dim(W) = \dim(V)\dim(W)^2$. Thus if we want $(V^*)^* \cong V$ we need $\dim(W) = 1$.
 \end{itemize}
 
 Less important

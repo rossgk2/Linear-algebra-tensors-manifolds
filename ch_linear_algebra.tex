@@ -2178,36 +2178,436 @@ The following special case of the above theorem follows immediately.
 
 \newpage
 
-\section{Geometry in $\R^2$}
+\section{Geometry in $\R^n$}
 
-\subsection*{Length}
+\subsection*{Length in $\R^n$}
 
 \begin{defn}
 \label{ch::lin_alg::defn::length_in_R2}
-    (Length of a vector in $\R^2$).
-
-    Let $\vv \in \R^2$. If we interpret $([\vv]_\sE)_1$ and $([\vv]_\sE)_2$ as the lengths of the base and height, respectively, of a right triangle, then the length of the hypotenuse of this right triangle is $\sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$. Since $\vv = ([\vv]_\sE)_1 \see_1 + ([\vv]_\sE)_2 \see_2$, it makes sense to think of the hypotenuse as being $\vv$, and thus, to define the \textit{length} (or \textit{magnitude}) $||\vv||$ of $\vv$ to be the length of the hypotenuse: $||\vv|| := \sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$.
+	(Length of a vector in $\R^2$).
+	
+	For $\vv \in \R^2$, we define the \textit{length} (or \textit{magnitude}) of $\vv$ to be the length of any line segment that can be made to perfectly coincide with $\vv$. We denote the length of $\vv \in \R^2$ by $||\vv||$.
 \end{defn}
 
+\begin{theorem}
+	\label{ch::lin_alg::thm::length_in_R2}
+	(Length of a vector in $\R^2$).
+	
+	Let $\vv \in \R^2$. If we express $\vv$ in the standard basis as $\vv = ([\vv]_\sE)_1 \see_1 + ([\vv]_\sE)_2 \see_2$, we can think of $([\vv]_\sE)_1 \see_1$, $([\vv]_\sE)_2 \see_2$, and $\vv$ as the base, height, and hypotenuse of a right triangle. From the Pythagorean Theorem, we know that the lengths of these triangle sides are related by $([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2 = ||\vv||^2$. Thus,
+	
+	\begin{align*}
+		||\vv|| = \sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}.
+	\end{align*}
+\end{theorem}
+
+Of course, vectors in $\R^2$ aren't the only ones that have length. To compute the length of $\vv \in \R^3$, we decompose $\vv$ into a sum of two vectors in $\R^2$ that are perpendicular to each other, compute the lengths of those, and then apply the Pythagorean Theorem again.
+
+This process actually yields a generalized way of defining length $\R^n$ for \textit{any} positive integer $n$, not just $n = 3$, which we formalize in the next definition.
+
 \begin{defn}
-\label{ch::lin_alg::defn::unit_vector_hat_notation}
-    (Unit vector hat notation). 
-    
-    For $\vv \in \R^2$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^2$.
+	\label{ch::lin_alg::defn::length_in_Rn}
+	(Length of a vector in $\R^n$). 
+	
+	Let $\vv_n \in \R^n$, $n > 2$, be expressed as $\vv_n = \vv_{n - 1} + ([\vv]_\sE)_n \see_n$, where $\vv_{n - 1} \in \R^{n - 1}$. We define the \textit{length} (or \textit{magnitude}) $||\vv_n||$ of $\vv_n$ to be
+	
+	\begin{align*}
+		||\vv_n|| = \sqrt{||\vv_{n - 1}||^2 + ([\vv]_\sE)_n^2} \text{ when $n > 2$}.
+	\end{align*}
+\end{defn}
+
+\begin{theorem}
+	(Length of a vector in $\R^n$).
+	
+	For all $\vv \in \R^n$ and all $n$, the length of $\vv$ is
+	
+	\begin{align*}
+		||\vv|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}\spc.
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	We prove the theorem by induction.
+	
+	(Base case). The definition of the length of a vector in $\R^2$ establishes the base case.
+	
+	(Inductive case). Let $\vv_n \in \R^n$. Assume as the inductive hypothesis that the claim is true for $n$; we need to show the claim is true for $n + 1$.
+	
+	By the definition of the length of a vector in $\R^{n + 1}$ (Definition \ref{ch::lin_alg::defn::length_in_Rn}), for $\vv_{n + 1} \in \R^{n + 1}$ we have \\ ${||\vv_{n + 1}|| = \sqrt{||\vv_n||^2 + ([\vv]_\sE)_{n + 1}^2}}$. By the inductive hypothesis, $||\vv_n|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}$, so
+	
+	\begin{align*}
+		||\vv_{n + 1}|| = \sqrt{\sqrt{\sum_{i = 1}^n \Big(([\vv]_\sE)_i^2\Big)}^2 + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^n \Big([\vv]_\sE)_i^2\Big) + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^{n + 1} ([\vv]_\sE)_i^2}.
+	\end{align*}
+	
+	This proves the claim for $n + 1$.
+\end{proof}
+
+\begin{defn}
+	\label{ch::lin_alg::defn::unit_vector_hat_notation}
+	(Unit vector hat notation). 
+	
+	For $\vv \in \R^n$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^n$.
 \end{defn}
 
 \begin{remark}
-\label{ch::lin_alg::rmk::direction_vectors}
-    (Direction vectors).
-    
-    Since the length of a unit vector is in some sense uninteresting, unit vectors can be considered to be specifying only direction and not magnitude; they can be considered to be ``direction vectors''.
+	\label{ch::lin_alg::rmk::direction_vectors}
+	(Direction vectors).
+	
+	Since the length of a unit vector is in some sense uninteresting, unit vectors can be considered to be specifying only direction and not magnitude; they can be considered to be ``direction vectors''.
 \end{remark}
 
 \begin{lemma}
-    $\vv = \mathbf{0} \iff ||\vv|| = 0$ for all $\vv \in \R^2$.
+\label{ch::lin_alg::lemma::only_zero_vector_has_no_length}
+	(Only the zero vector has no length).
+	
+	If $\vv \in \R^n$ then $\vv = \mathbf{0} \iff ||\vv|| = 0$.
 \end{lemma}
 
-\subsection*{Angle}
+\begin{proof} \mbox{} \\ \indent
+	($\implies$). If $\vv = \mathbf{0}$ then $([\vv]_\sE)_i = 0$ for all $i$, and so $||\vv|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2} = \sqrt{\sum_{i = 1}^n 0} = 0$.
+	
+	($\impliedby$). If $||\vv|| = 0$ then $\vv = ||\vv||\hvv = 0 \cdot \hvv = \mathbf{0}$. 
+\end{proof}
+
+\subsubsection*{Important inequalities involving length}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::triangle_inequality}	
+	(Triangle inequality).
+	
+	For all $\vv, \ww \in \R^n$ we have
+	
+	\begin{align*}
+		||\vv + \ww|| \leq ||\vv|| + ||\ww||.
+	\end{align*}
+	
+	Additionally, if equality holds and $\vv \neq \mathbf{0}$, then $\ww = c\vv$ for some $c > 0$.
+\end{theorem}
+
+\begin{proof}
+	The inequality of the theorem is logically equivalent to the inequality
+	
+	\begin{align*}
+		||\vv + \ww||^2 \leq (||\vv|| + ||\ww||)^2.
+	\end{align*}	
+	
+	We will work towards this alternative inequality; it turns out that in doing so, we will also establish the ``Additionally'' portion of the theorem.
+	
+	Let $v_i$ denote the $i$th component of $\vv$ and $w_i$ denote the $i$th component of $\ww$. On one hand, we have
+	
+	\begin{align*}
+		||\vv + \ww||^2 = \sum_{i = 1}^n (v_i + w_i)^2 = ||\vv||^2 + 2\sum_{i = 1}^n v_i w_i + ||\ww||^2.
+	\end{align*}	
+	
+	On the other hand, we have
+	
+	\begin{align*}
+		(||\vv|| + ||\ww||)^2 = ||\vv||^2 + 2||\vv|| \spc ||\ww|| + ||\ww||^2. 
+	\end{align*}
+	
+	Thus, the inequality we want to show is
+	
+	\begin{align*}
+		||\vv||^2 + 2\sum_{i = 1}^n v_i w_i + ||\ww||^2 \leq ||\vv||^2 + 2||\vv|| \spc ||\ww|| + ||\ww||^2.
+	\end{align*}
+	
+	Canceling like terms from both sides and dividing by $2$, we see that an equivalent inequality is
+	
+	\begin{align*}
+		\sum_{i = 1}^n v_i w_i \leq ||\vv|| \spc ||\ww||.
+	\end{align*}
+	
+	We show this inequality and establish the content of ``Additionally'' in the next lemma.
+\end{proof}
+
+\begin{lemma}
+	(Cauchy-Schwarz inequality).
+	
+	For all $\vv, \ww \in \R^n$ we have
+	
+	\begin{align*}
+		\sum_{i = 1}^n v_i w_i \leq ||\vv|| \spc ||\ww||.
+	\end{align*}
+	
+	Additionally, if equality holds and $\vv \neq \mathbf{0}$, then $\ww = c\vv$ for some $c > 0$.
+\end{lemma}
+
+\begin{proof}
+	
+	First, we prove the inequality by induction on $n$.
+	
+	\fullindent
+	{
+		(Base case, $n = 1$). We have $v_1 w_1 \leq |v_1 w_1| = |v_1||w_1| = ||\vv|| \spc ||\ww||$.
+		
+		(Base case, $n = 2$). We show an equivalent inequality, $(v_1 w_1 + v_2 w_2)^2 \leq (||\vv|| \spc ||\ww||)^2$. This inequality is itself logically equivalent to 
+		
+		\begin{alignat*}{2}
+			& & (v_1 w_1 + v_2 w_2)(v_1 w_1 + v_2 w_2) &{}\leq{} (v_1^2 + v_2^2)(w_1^2 + w_2^2) \\
+			\iff\quad & & v_1^2 w_1^2 + 2 v_1 w_1 v_2 w_2 + v_2^2 w_2^2 &{}\leq{} v_1^2 w_1^2 + v_1^2 w_2^2 + v_2^2 w_1^2 + v_2^2 w_2^2 \\
+			\iff\quad & & 2 v_1 w_1 v_2 w_2 &{}\leq{} v_1^2 w_2^2 + v_2^2 w_1^2 \\
+			\iff\quad & & 0 &{}\leq{} v_1^2 w_2^2 - 2 v_1 w_1 v_2 w_2 + v_2^2 w_1^2 \\
+			\iff\quad & & 0 &{}\leq{} (v_1 w_2 - v_2 w_1)^2.
+		\end{alignat*}
+		
+		This last statement is true since the square of a number is always nonnegative.
+		
+		(Inductive case, $n > 2$). Assume the inequality holds for $n - 1$, and let $\vv, \ww \in \R^n$. We can express $\vv$ as $\vv = (\vv_{n - 1}, v_n)$ and $\ww$ as $\ww = (\ww_{n - 1}, w_n)$ with $\vv_{n - 1}, \ww_{n - 1} \in \R^{n - 1}$ and $v_n, w_n \in \R$, so that $||\vv||^2 = ||\vv_{n - 1}||^2 + v_n^2$ and $||\ww||^2 = ||\ww_{n - 1}||^2 + w_n^2$. With this in mind, we have
+		
+		\begin{align*}
+			\sum_{i = 1}^n v_i w_i &= \sum_{i = 1}^{n - 1} v_i w_i + v_n w_n \\
+			&\leq ||\vv_{n - 1}|| \spc ||\ww_{n - 1}|| + v_n w_n, \text{ by the inductive hypothesis} \\
+			&\leq a_1 b_2 + a_2 b_2, \text{ where $\begin{pmatrix} a_1 \\ a_2 \end{pmatrix} = \begin{pmatrix} ||\vv_{n - 1}|| \\ v_n \end{pmatrix}$ and $\begin{pmatrix} b_1 \\ b_2 \end{pmatrix} = \begin{pmatrix} ||\ww_{n - 1}|| \\ w_n \end{pmatrix}$} \\
+			&\leq \left|\left|\begin{pmatrix} a_1 \\ a_2 \end{pmatrix}\right|\right| \spc \left|\left|\begin{pmatrix} b_1 \\ b_2 \end{pmatrix}\right|\right|, \text{ by the base case $n = 2$} \\
+			&= \sqrt{||\vv_{n - 1}||^2 + v_n^2} \, \sqrt{||\ww_{n - 1}||^2 + w_n^2} \\
+			&= ||\vv|| \spc ||\ww||.
+		\end{align*}
+	}
+	
+	Thus $\sum_{i = 1}^n v_i w_i \leq ||\vv|| \spc ||\ww||$, so we have proven the main inequality. 
+	
+	It remains to show the content after ``Additionally''. To do so, assume $\vv, \ww \neq \mathbf{0}$ and $\sum_{i = 1}^n v_i w_i = ||\vv|| \spc ||\ww||$. We want to show that there exists $c > 0$ such that $\ww = c\vv$. 
+	
+	This condition is related to others via the following logical connections:
+	
+	\begin{alignat*}{1}
+		& \exists c > 0 \spc \ww = c\vv \\
+		\iff\quad & \ww = \frac{||\ww||}{||\vv||} \vv \\
+		\iff\quad & ||\vv||\ww = ||\ww||\vv \\
+		\iff\quad & ||\ww||\vv - ||\vv||\ww = \mathbf{0} \\
+		\impliedby\quad & \Big|\Big| ||\ww||\vv - ||\vv||\ww \Big|\Big| = 0 \\
+		\iff\quad & \Big|\Big| ||\ww||\vv - ||\vv||\ww \Big|\Big|^2 = 0
+	\end{alignat*}
+	
+	(The forward implication of the first $\iff$ holds because if there is $c > 0$ such that $\ww = c\vv$, then taking lengths gives $||\ww|| = |c| \spc ||\vv|| = c||\vv||$, and solving for $c$ gives $c = ||\ww||/||\vv||$).
+	
+	It suffices to show the last condition. We have
+	
+	\begin{align*}
+		\Big|\Big| ||\ww||\vv - ||\vv||\ww \Big|\Big|^2
+		&= \sum_{i = 1}^n \left(||\ww|| \spc v_i - ||\vv|| \spc w_i\right)^2 \\
+		&= \sum_{i = 1}^n ||\ww||^2 v_i^2 - 2||\vv|| \spc ||\ww|| v_i w_i + ||\vv||^2 w_i^2 \\
+		&= ||\ww||^2 \sum_{i = 1}^n v_i^2 - 2 ||\vv|| \spc ||\ww|| \sum_{i = 1}^n v_i w_i + ||\vv||^2 \sum_{i = 1}^n w_i^2 \\
+		&= ||\ww||^2 ||\vv||^2 - 2 ||\vv|| \spc ||\ww|| \sum_{i = 1}^n v_i w_i + ||\vv||^2 ||\ww||^2 \\
+		&= 2 ||\vv||^2 ||\ww||^2 - 2 ||\vv|| \spc ||\ww|| \sum_{i = 1}^n v_i w_i \\
+		&= 2 ||\vv||^2 ||\ww||^2 - 2 ||\vv||^2 ||\ww||^2, \text{ since we assumed $\sum_{i = 1}^n v_i w_i = ||\vv|| \spc ||\ww||$} \\
+		&= 0.
+	\end{align*}
+\end{proof}
+
+\begin{remark}
+	(Proving the Cauchy-Schwarz inequality).
+	
+	The Cauchy-Schwarz inequality is typically proved by using an operation we haven't yet investigated, the \textit{dot product}. This is only possible because most books do not develop the dot product in a natural way, so the dot product is available far too early, before it is really understood. In our approach where we do give the dot product justice, we need to know the inequality in order to develop the dot product. (We need to know the Cauchy-Schwarz inequality so that we can prove the triangle inequality, which we need in order to establish facts about rotations, which, alongside projections, are one of the things we need to know about to develop the dot product). Thus, using the dot product to prove the Cauchy-Schwarz inequality would be circular.
+\end{remark}
+
+\subsubsection*{Isometries}
+
+\begin{defn}
+	(Distance in $\R^n$).
+	
+	The distance between vectors $\vv$ and $\ww$ in $\R^n$ is given by the function $\dist:\R^n \times \R^n \rightarrow \R$ defined by $\dist(\vv, \ww) = ||\ww - \vv||$.
+\end{defn}
+
+\begin{defn}
+	(Isometry on $\R^n$).
+	
+	A function $\ff:\R^n \rightarrow \R^n$ is said to be an \textit{isometry (on $\R^n$)} iff it preserves distances; that is, iff $\dist(\vv, \ww) = ||\ww - \vv|| = ||\ff(\ww) - \ff(\vv)|| = \dist(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^n$.
+\end{defn}
+
+\begin{lemma}
+	\label{ch::lin_alg::lemma::isometries_preserve_midpoints}
+	(Isometries preserve midpoints).
+	
+	If $\ff:\R^n \rightarrow \R^n$ is an isometry, then $\ff$ preserves midpoints; that is, for all $\vv, \ww \in \R^n$ we have
+	
+	\begin{align*}
+		\frac{1}{2}(\vv + \ww) \overset{\ff}{\mapsto} \frac{1}{2}(\ff(\vv) + \ff(\ww)).
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	By the triangle inequality, we have
+	
+	\begin{align*}
+		||\ff(\ww) - \ff(\vv)|| &= \Big|\Big|\ff(\ww) - \ff\left(\frac{1}{2}(\vv + \ww)\right) + \ff\left(\frac{1}{2}(\vv + \ww)\right) - \ff(\vv) \Big|\Big| \\
+		&\leq \Big|\Big|\ff(\ww) - \ff\left( \frac{1}{2}(\vv + \ww)\right)\Big|\Big| + \Big|\Big|\ff\left(\frac{1}{2}(\vv + \ww)\right) - \ff(\vv)\Big|\Big|.
+	\end{align*}
+	
+	Since $\ff$ is an isometry, the right side is equal to
+	
+	\begin{align*}
+		&\Big|\Big|\ww - \frac{1}{2}(\vv + \ww)\Big|\Big| + \Big|\Big|\frac{1}{2}(\vv + \ww) - \vv\Big|\Big| \\
+		= &\frac{1}{2}\Big|\Big|\ww - \vv\Big|\Big| + \frac{1}{2}\Big|\Big|\ww - \vv\Big|\Big| \\
+		= &||\ww - \vv|| \\
+		= &||\ff(\ww) - \ff(\vv)||.
+	\end{align*}
+	
+	So the inequality is actually an equality, which we state now, defining $\uu_1, \uu_2 \in \R^n$ for convenience:
+	
+	\begin{align*}
+		||\ff(\ww) - \ff(\vv)|| = \Big|\Big|\underbrace{\ff(\ww) - \ff\left( \frac{1}{2}(\vv + \ww)\right)}_{\uu_1}\Big|\Big| + \Big|\Big|\underbrace{\ff\left(\frac{1}{2}(\vv + \ww)\right) - \ff(\vv)}_{\uu_2}\Big|\Big|.
+	\end{align*}
+	
+	This equality satisfies one of the hypotheses of the equality case of the triangle inequality (Theorem \ref{ch::lin_alg::thm::triangle_inequality}). When the other hypothesis of $\uu_1, \uu_2 \neq \mathbf{0}$ is satisfied, we can apply said equality case.
+	
+	(Case: $\uu_1, \uu_2 \neq \mathbf{0}$). By the equality case of the triangle inequality, we have $\uu_2 = c\uu_1$ for some $c > 0$. To determine $c$, notice how in the earlier chain of equalities, we saw $||\uu_1|| = \frac{1}{2}||\ww - \vv|| = ||\uu_2||$. Since $||\uu_1|| = ||\uu_2||$, the $c \in \R$ for which $\uu_2 = c\uu_1$ must be $c = 1$, so $\uu_1 = \uu_2$:
+	
+	\begin{align*}
+		\underbrace{\ff(\ww) - \ff\left( \frac{1}{2}(\vv + \ww)\right)}_{\uu_1} = \underbrace{\ff\left(\frac{1}{2}(\vv + \ww)\right) - \ff(\vv)}_{\uu_2}.
+	\end{align*}
+	
+	Rearranging, we obtain
+	
+	\begin{align*}
+		\ff(\vv) + \ff(\ww) = 2\ff\left(\frac{1}{2}(\vv + \ww)\right),
+	\end{align*}
+	
+	which is equivalent to the desired result.
+	
+	(Case: $\uu_1 = \mathbf{0}$ or $\uu_2 = \mathbf{0}$). The analysis in the previous case that showed $||\uu_1|| = ||\uu_2||$ holds here, too. So $||\uu_1|| = ||\uu_2|| = \mathbf{0}$, which means $\uu_1 = \uu_2 = \mathbf{0}$:
+	
+	\begin{align*}
+		\underbrace{\ff(\ww) - \ff\left( \frac{1}{2}(\vv + \ww)\right)}_{\uu_1} &= \mathbf{0} \iff \ff(\ww) = \ff\left( \frac{1}{2}(\vv + \ww) \right), \\
+		\underbrace{\ff\left(\frac{1}{2}(\vv + \ww)\right) - \ff(\vv)}_{\uu_2} &= \mathbf{0} \iff \ff(\vv) = \ff\left( \frac{1}{2}(\vv + \ww) \right).
+	\end{align*}
+	
+	Adding the two equations, we obtain
+	
+	\begin{align*}
+		\ff(\vv) + \ff(\ww) = 2\ff\left(\frac{1}{2}(\vv + \ww)\right),
+	\end{align*}
+	
+	which, as in the previous case, is equivalent to the desired result.
+\end{proof}
+
+\begin{theorem}
+	\label{ch::lin_alg::thm::isometries_are_affine}
+	
+	Every isometry $\ff:\R^n \rightarrow \R^n$ is of the form $\ff(\vv) = \gg(\vv) + \ff(\mathbf{0})$ for all $\vv \in \R^n$, where $\gg:\R^n \rightarrow \R^n$ is linear.
+\end{theorem}
+
+\begin{proof}
+	Let $\ff:\R^n \rightarrow \R^n$ be an isometry. We will show that the function $\gg:\R^n \rightarrow \R^n$ defined by $\gg := \ff - \ff(\mathbf{0})$ is linear. Note, $\gg$ is also an isometry since it is a translation of another isometry.
+	
+	We need to show that $\gg(\vv + \ww) = \gg(\vv) + \gg(\ww)$ for all $\vv, \ww \in \R^n$ and that $\gg(c\vv) = c\gg(\vv)$ for all $c \in \R$.
+	
+	\vspace{.5cm}
+	
+	($\gg(\vv + \ww) = \gg(\vv) + \gg(\ww)$ for all $\vv, \ww \in \R^n$).
+	\fullindent
+	{
+		First, notice that since $\gg$, being an isometry, preserves midpoints, then for all $\vv \in \R^n$ we have $\gg\left(\frac{1}{2}\vv \right) = \gg\left(\frac{1}{2}(\vv + \mathbf{0})\right) = \frac{1}{2}\left(\gg(\vv) + \gg(\mathbf{0})\right) = \frac{1}{2}\gg(\vv)$. That is, 
+		
+		\begin{align*}
+			\gg\left(\frac{1}{2}\vv\right) = \frac{1}{2}\gg(\vv) \text{ for all $\vv \in \R^n$}.
+		\end{align*}
+		
+		In particular, $\ff\left(\frac{1}{2}(\vv + \ww)\right) = \frac{1}{2}\ff\left(\vv + \ww\right)$. Swapping the sides of this equation and multiplying by $2$, we have
+		
+		\begin{align*}
+			\ff\left(\vv + \ww\right) &= 2\ff\left(\frac{1}{2}(\vv + \ww)\right) \\
+			&= 2 \cdot \frac{1}{2}\left(\ff(\vv) + \ff(\ww)\right), \text{ since $\ff$ preserves midpoints} \\
+			&= \ff(\vv) + \ff(\ww),
+		\end{align*}
+		
+		as desired.
+	}
+	
+	\vspace{.5cm}
+	
+	($\gg(c\vv) = c\gg(\vv)$ for all $c \in \Q$ and $\vv \in \R^n$)
+	\fullindent
+	{
+		($\gg(\mathbf{0}) = \mathbf{0}$).
+		\fullindent
+		{
+			We have $\gg(\mathbf{0}) = \gg(\mathbf{0} + \mathbf{0}) = \gg(\mathbf{0}) + \gg(\mathbf{0}) = 2\gg(\mathbf{0})$. In all, $\gg(\mathbf{0}) = 2\gg(\mathbf{0})$, which implies $\gg(\mathbf{0}) = \mathbf{0}$.
+		}
+		
+		\vspace{.25cm}
+		
+		($\gg(c\vv) = c\gg(\vv)$ for all positive $c \in \Z$ and $\vv \in \R^n$).
+		\fullindent
+		{
+			Since $\gg(\vv + \ww) = \gg(\vv) + \gg(\ww)$ for all $\vv, \ww \in \R^n$, it follows from induction that $\gg(c\vv) = c\gg(\vv)$ for every positive $c \in \Z$ and $\vv \in \R^n$.
+		}
+		
+		\vspace{.25cm}
+		
+		($\gg(c\vv) = c\gg(\vv)$ when $c = -1, \vv \in \R^n$).
+		\fullindent
+		{
+			For all $\vv \in \R^n$, we have
+			
+			\begin{align*}
+				\mathbf{0} = \gg(\mathbf{0}) = \gg\left(\frac{1}{2}(\vv - \vv)\right) = \frac{1}{2}\left(\gg(\vv) + \gg(-\vv)\right).
+			\end{align*} 
+			
+			So, for all $\vv \in \R^n$, $\gg(\vv) + \gg(-\vv) = \mathbf{0}$, i.e., $\gg(-\vv) = -\gg(\vv)$. 
+		}
+		
+		\vspace{.25cm}
+		
+		($\gg(c\vv) = c\gg(\vv)$ when $c \in \Z, \vv \in \R^n$).
+		\fullindent
+		{
+			We already know from the second case that the property holds when $c \in \Z$ is nonnegative and $\vv \in \R^n$. When $c$ is negative and $\vv \in \R^n$, we have $\gg(c\vv) = \gg(-|c|\vv) = -\gg(|c|\vv) = -|c|\gg(\vv) = c\gg(\vv)$.
+		}
+		
+		\vspace{.25cm}
+		
+		($\gg\left(\frac{1}{c}\vv\right) = \frac{1}{c}\gg(\vv)$ for all $c \in \Z, \vv \in \R^n$).
+		\fullindent
+		{		
+			For $c \in \Z, \vv \in \R^n$, applying the previous case gives $\gg(\vv) = \gg\left(c\frac{\vv}{c}\right) = c\gg\left(\frac{\vv}{c}\right)$, i.e., 
+			
+			\begin{align*}
+				\gg(\vv) = c\gg\left(\frac{\vv}{c}\right).
+			\end{align*}
+			
+			Dividing both sides by $c$ yields the desired result.
+		}
+		
+		\vspace{.25cm}
+		
+		($\gg(c\vv) = c\gg(\vv)$ for all $c \in \Q, \vv \in \R^n$).
+		\fullindent
+		{		
+			For $c \in \Q$, we have $c = \frac{m}{n}$, where $m, n \in \Z$. By the previous cases, we have $\gg(c\vv) = \gg\left(\frac{m}{n}\vv\right) = \frac{1}{n}\gg\left(m\vv\right) = \frac{m}{n}\gg(\vv) = c\gg(\vv)$.
+		}
+	}
+	
+	\vspace{.5cm}
+	
+	($\gg(c\vv) = c\gg(\vv)$ for all $c \in \R, \vv \in \R^n$).
+	\fullindent
+	{
+		Let $c \in \R, \vv \in \R^n$, and let $(q_k)$ be a sequence of rational numbers with $\lim_{k \rightarrow \infty} q_k = c$. If we assume $\vv \neq \mathbf{0}$, which we can do since we already showed $\mathbf{0} = \gg(c \cdot \mathbf{0}) = c\gg(\mathbf{0}) = \mathbf{0}$ earlier, then we have the following sequence of logical equivalences\footnote{If $(\vv_k)$ is a sequence of vectors in $\R^n$ then for $\boldsymbol{\ell} \in \R^n$ we write $\lim_{k \rightarrow \infty} \vv_k = \boldsymbol{\ell}$ iff the scalar limit $\lim_{k \rightarrow \infty} ||\vv_k - \boldsymbol{\ell}||$ is equal to $0$.}:
+			
+		\begin{align*}
+			&\lim_{k \rightarrow \infty} q_k = c \\
+			\iff &\lim_{k \rightarrow \infty} q_k\vv = c\vv, \text{ since $\vv \neq \mathbf{0}$} \\
+			\iff &\lim_{k \rightarrow \infty} ||q_k\vv - c\vv|| = 0, \text{by the definition of limits in $\R^n$} \\
+			\iff &\lim_{k \rightarrow \infty} ||\gg(q_k\vv) - \gg(c\vv)|| = 0, \text{ since $\gg$ is an isometry} \\
+			\iff &\lim_{k \rightarrow \infty} \gg(q_k\vv) = \gg(c\vv), \text{by the definition of limits in $\R^n$} \\
+			\iff &\lim_{k \rightarrow \infty} q_k\gg(\vv) = \gg(c\vv), \text{ since $\gg(q\vv) = q\gg(\vv)$ for $q \in \Q$} \\
+			\iff &\gg(\vv) \lim_{k \rightarrow \infty} q_k = \gg(c\vv) \\
+			\iff &\gg(\vv) \cdot c = \gg(c\vv).
+		\end{align*}
+	}
+\end{proof}
+
+Useful to know...
+
+\begin{theorem}
+	A linear function is an isometry if and only if it is length-preserving.
+\end{theorem}
+
+\begin{proof}
+	TO-DO.
+\end{proof}
+
+\subsection*{Angle in $\R^2$}
 
 You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\tttheta_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the length of the shortest arc between the two vectors; it has no sign attached describing whether that shortest arc happens to be counterclockwise or clockwise.
 
@@ -2224,7 +2624,7 @@ Unsigned angle $\theta_u$ is the natural notion of ``the angle between two arbit
     
     \begin{itemize}
         \item a parameterization $\cc:\R \rightarrow \R^2$ in which the motion is ``counterclockwise'' ($Q_1 = \{(x, y) \mid x, y > 0\}$ is the first quadrant visited and $Q_4 = \{(x, y) \mid x, y < 0\}$ is the last quadrant visited)
-        \item a parameterization $\widetilde{\cc}:\R \rightarrow \R^2$ in which the motion is ``clockwise'' ($Q_4$ is the first quadrant visited and $Q_1$ is the last quadrant visited
+        \item a parameterization $\widetilde{\cc}:\R \rightarrow \R^2$ in which the motion is ``clockwise'' ($Q_4$ is the first quadrant visited and $Q_1$ is the last quadrant visited)
     \end{itemize}
 
     One example of a counterclockwise parameterization is given by $\cc(t) := (t, \sqrt{1 - t^2})$ when $t \in [-1, 1]$ and $\cc(t) := (t - 1, -\sqrt{1 - (t - 1)^2})$ when $t \in [1, 3]$. For any counterclockwise parameterization $\cc$ with domain $[t_1, t_2]$, a clockwise parameterization $\widetilde{\cc}$ is given by $\widetilde{\cc}(t) := \cc(t_1 + t_2 - t)$.
@@ -2453,331 +2853,257 @@ Make sure this discussion on angle is given in dot product section:
     \item derivation. recall that $\arccos$ is the inverse of the restriction of cos to $I := [0, \pi]$. The set which $\theta_u(\vv, \ww)$ ranges over is exactly $I$, while the set $\theta_s(\vv, \ww)$ ranges over is a proper superset of $I$. Therefore, we have $\arccos(\cos(\theta_u(\vv, \ww)) = \theta_u(\vv, \ww)$ but do not always have $\arccos(\cos(\theta_s(\vv, \ww)) = \theta_s(\vv, \ww)$. consequently, we have $\theta_u(\vv, \ww) = \arccos(\hvv \cdot \hww)$ but do not have $\theta_s(\vv, \ww) = \arccos(\hvv \cdot \hww)$.
 \end{itemize}
 
+\subsection*{Trigonometry in $\R^2$}
 
-\subsection*{Rotations}
-
-\begin{defn}
-    \label{ch::lin_alg::defn::rotation_in_R2}
-    (Rotation in $\R^2$).
-    
-    A function $\RR:\R^2 \rightarrow \R^2$ is a \textit{rotation in $\R^2$} iff
-
-    \begin{enumerate}
-        \item ($\RR$ preserves length). $||\vv|| = ||\RR(\vv)||$ for all $\vv \in \R^2$.
-        \item ($\RR$ preserves signed angle). $\theta_s(\vv, \ww) = \theta_s(\RR(\vv), \RR(\ww))$ for all $\vv, \ww \in \R^2$.
-        \item ($\RR$ fixes the origin). $\RR(\mathbf{0}) = \mathbf{0}$.
-    \end{enumerate}
-\end{defn}
-
-\begin{remark}
-    (Common alternative rotation terminology).
-    
-    Other texts define \textit{general rotations} to be length preserving functions that preserve length, \textit{un}signed angle, and fix the origin. When using this convention, \textit{proper rotations} are general rotations that preserve signed angle and \textit{improper rotations} are general rotations that negate signed angle.
-\end{remark}
-
-\begin{lemma}
-    The kernel of every length-preserving function is trivial.
-\end{lemma}
-
-\begin{proof}
-    Suppose for contradiction that $\ff$ preserves length and has a nontrivial kernel. Then there exists a nonzero $\vv \in \R^n$ such that $\ff(\vv) = \mathbf{0}$. We have $||\vv|| \neq 0$ (by the lemma) and $||\ff(\vv)|| = ||\mathbf{0}|| = 0$, so $||\vv|| \neq ||\ff(\vv)||$, contradicting the fact that $\ff$ is an isometry.
-\end{proof}
-        
-\begin{lemma}
-    Let $\ff:\R^n \rightarrow \R^n$ be a length-preserving function.
-        
-    \begin{enumerate}
-        \item If $\ff$ fixes the origin then for all $\vv \in \R^n$ we have $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
-
-        \item $\ff$ maps the midpoint $\frac{1}{2}(\vv + \ww)$ of $\vv, \ww \in \R^n$ to the midpoint $\frac{1}{2}(\ff(\vv) + \ff(\ww))$ of $\ff(\vv), \ff(\ww)$.
-    \end{enumerate}
-\end{lemma}
-
-\begin{proof}
-    TO-DO
-    
-    \begin{enumerate}
-        \item ...
-
-        \item ...
-    \end{enumerate}
-\end{proof} 
-
-\begin{theorem}
-    Every length-preserving function $\R^n \rightarrow \R^n$ that fixes the origin is linear\footnote{From \url{https://www.sfu.ca/~mdevos/notes/geom-sym/18_isometries.pdf}.}.
-\end{theorem}
-
-\begin{proof}
-    Let $\ff:\R^n \rightarrow \R^n$. We need to show that $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$ and $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$.
-    
-    ($\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$).
-    \fullindent
-    {
-        \fullindent
-        {
-            (Case: $c = 0$). Then $\ff(c\vv) = \ff(0\vv) = 0\ff(\vv) = \mathbf{0} = 0\ff(\vv) = c\ff(\vv)$.
-        }
-        \fullindent
-        {
-            (Case: $c \neq 0$). Define $\text{dist}:\R^n \times \R^n \rightarrow \R$ by $\text{dist}(\vv, \ww) := ||\ww - \vv||$. Notice that $c\vv \in \spann(\{\vv\})$ satisfies
-
-            \begin{align*}
-                \begin{cases}
-                    \text{dist}(c\vv, \mathbf{0}) = ||c\vv|| \\
-                    \text{dist}(c\vv, \vv) = ||(c - 1)\vv||
-                \end{cases}
-            \end{align*}
-
-            Similarly, $\ff(\vv) \in \spann(\{\ff(\vv)\})$ satisfies
-
-            \begin{align*}
-                \begin{cases}
-                    \text{dist}(c\ff(\vv), \mathbf{0}) = ||c\ff(\vv)|| = ||c\vv|| \\
-                    \text{dist}(c\ff(\vv), \ff(\vv)) = ||(c - 1)\ff(\vv)|| = ||(c - 1)\vv||
-                \end{cases}
-            \end{align*}
-
-            We know from the lemma that $\spann(\{\vv\}) = \spann(\{\ff(\vv)\})$. Therefore $\ff(c\vv)$ and $c\ff(\vv)$ are two vectors in the same $1$-dimensional vector space satisfying the same distance constraints. To complete the proof of this case, it suffices to show that for all $d_1, d_2 \in \R$ there is a unique $\ww \in \spann(\{\vv\})$ such that $\text{dist}(\ww, \mathbf{0}) = d_1$ and $\text{dist}(\ww, \mathbf{v}) = d_2$.
-
-            TO-DO
-        }
-    }
-    
-    ($\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$).
-    \fullindent
-    {
-        We know $\ff$ maps midpoints to midpoints: $\ff\left(\frac{1}{2}(\vv + \ww)\right) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Since $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$ then the left side of the previous equation is equal to $\frac{1}{2}\ff(\vv + \ww)$, and we obtain $\frac{1}{2}\ff(\vv + \ww) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Multiply both sides of this equation by $2$ to obtain $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$, as desired.
-    }
-\end{proof}
-
-The next theorem is an immediate consequence of the previous one.
-
-\begin{theorem}
-    A function $\R^2 \rightarrow \R^2$ is a rotation in $\R^2$ iff it is linear, preserves length, and preserves signed angle.
-\end{theorem}
-
-\subsection*{Trigonometry}
+[the point of this section is to revisit trigonometry through a more formal lens, focusing on concretely knowing which of signed or unsigned angle we're working with as we define trig functions... rather than the handwavy stuff that typically goes on]
 
 \begin{defn}
-\label{ch::lin_alg::deriv::cosine_sine}
-    (Cosine and sine).
-
-    For every $t \in [0, 2\pi)$ we define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique\footnote{We know such a unique unit vector exists because of Theorem \ref{ch::lin_alg::lemma::vector_from_vector_and_angle}.} unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$.
+	\label{ch::lin_alg::deriv::cosine_sine}
+	(Cosine and sine).
+	
+	For every $t \in [0, 2\pi)$ we define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique\footnote{We know such a unique unit vector exists because of Theorem \ref{ch::lin_alg::lemma::vector_from_vector_and_angle}.} unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$.
 \end{defn}
 
 \begin{theorem}
-    \label{ch::lin_alg::thm::vector_polar_form}
-    (Polar form of vectors).
-
-    We have
-    
-    \begin{align*}
-        \vv =
-        ||\vv||
-        \begin{pmatrix}
-            \cos(\theta_s(\see_1, \vv)) \\
-            \sin(\theta_s(\see_1, \vv))
-        \end{pmatrix}
-        =
-        ||\vv||
-        \begin{pmatrix}
-            \cos(\tttheta_s(\see_1, \vv)) \\
-            -\sin(\tttheta_s(\see_1, \vv))
-        \end{pmatrix}
-        \text{ for all $\vv \in \R^2$}.
-    \end{align*}
+	\label{ch::lin_alg::thm::vector_polar_form}
+	(Polar form of vectors).
+	
+	We have
+	
+	\begin{align*}
+		\vv =
+		||\vv||
+		\begin{pmatrix}
+			\cos(\theta_s(\see_1, \vv)) \\
+			\sin(\theta_s(\see_1, \vv))
+		\end{pmatrix}
+		=
+		||\vv||
+		\begin{pmatrix}
+			\cos(\tttheta_s(\see_1, \vv)) \\
+			-\sin(\tttheta_s(\see_1, \vv))
+		\end{pmatrix}
+		\text{ for all $\vv \in \R^2$}.
+	\end{align*}
 \end{theorem}
 
 \begin{proof}
-    Let $\vv \in \R^2$. We first prove that $\vv$ is equal to the first expression. We have $\theta_s(\see_1, \vv) = t$ for some $t \in [0, 2\pi)$; by the previous definition we have $\hvv = \vv/||\vv|| = (\cos(t), \sin(t))^\top = (\cos(\theta_s(\see_1, \vv)), \sin(\theta_s(\see_1, \vv)))^\top$. Multiply both sides of this equation by $||\vv||$ to obtain the desired result.
-
-    To derive the second expression for $\vv$, use the that $\theta_s(\see_1, \vv) = 2\pi - \tttheta_s(\see_1, \hvv)$.
+	Let $\vv \in \R^2$. We first prove that $\vv$ is equal to the first expression. We have $\theta_s(\see_1, \vv) = t$ for some $t \in [0, 2\pi)$; by the previous definition we have $\hvv = \vv/||\vv|| = (\cos(t), \sin(t))^\top = (\cos(\theta_s(\see_1, \vv)), \sin(\theta_s(\see_1, \vv)))^\top$. Multiply both sides of this equation by $||\vv||$ to obtain the desired result.
+	
+	To derive the second expression for $\vv$, use the that $\theta_s(\see_1, \vv) = 2\pi - \tttheta_s(\see_1, \hvv)$.
 \end{proof}
 
 \begin{deriv}
-    (Cosine and sine as ratios of lengths of sides of right triangles).
-
-    \newcommand{\thh}{\widetilde{\hh}}
-
-    Consider an arbitrary right triangle $T$ with non-hypotenuse sides $\ss_1$ and $\ss_2$. Note, the hypotenuse $\hh$ is $\hh = \ss_1 \pm \ss_2$.
-
-    For $i \in \{1, 2\}$, the $\ss_i$ which appears in the angle $\theta_u(\ss_i, \hh)$ is called the \textit{side adjacent to $\theta_u(\ss_i, \hh)$}; and the side $\ss_j$ which does not appear in that angle is called \textit{side opposite to $\theta_u(\ss_i, \hh)$}. Thus $\ss_1$ is the side adjacent to $\theta_u(\ss_1, \hh)$ and is also the side opposite to $\theta_u(\ss_2, \hh)$; $\ss_2$ is the side adjacent to $\theta_u(\ss_2, \hh)$ and is also the side opposite to $\theta_u(\ss_1, \hh)$.
-
-    let $\ff$ be an length-preserving and signed-angle-preserving function that takes the arbitrary right triangle $T$ to a congruent right triangle $\ff(T) = \tT \subseteq Q_1$ in the first quadrant with hypotenuse $\thh = \ff(\hh)$, a horizontal side $\ss_h = \ff(\ss_1)$ that lies on the $x$-axis, and a vertical side $\ss_v = \ff(\ss_2)$. \textbf{justify why such $\ff$ exists}
-
-    note, since $\ff$ preserves angles, then $\ff$ also preserves the adjacentness and oppositeness of triangle sides\footnote{If $\ss_i$ is the side adjacent to $\theta(\ss_i, \hh)$ then $\ff(\ss_i) = \ss_h$ is the side adjacent to $\theta(\ff(\ss_i), \ff(\hh))$; the analogous statement for opposite sides also holds.}
-
-    \textbf{since $\ff$ is linear (justify why)} then since $\hh = \ss_1 \pm \ss_2$ we have $\ff(\hh) = \ff(\ss_1) \pm \ff(\ss_2) \iff \thh = \ss_h \pm \ss_v$. since $\thh \in Q_1$, the $\pm$ sign must be $+$, and we have $\thh = \ss_h + \ss_v = ||\ss_h||\widehat{\ss}_h + ||\ss_v|| \widehat{\ss}_v = (||\ss_h||, ||\ss_v||)^\top$. also, by the previous theorem we have $\thh = ||\thh||(\cos(t), \sin(t))^\top = (||\thh||\cos(t), ||\thh||\sin(t))^\top$, where $t = \theta_s(\see_1, \thh) = \theta_s(\ss_h, \thh)$. comparing the results of the previous two sentences we see $\ss_h = (||\thh||\cos(t), 0) = ||\thh||\cos(t)\see_1$ and $\ss_v = (0, ||\thh||\sin(t)) = ||\thh||\sin(t)\see_2$.
-
-    with this information, we can obtain expressions for $\cos(t)$ and $\sin(t)$ as functions of the side lengths of $\tT \cong T$:
-
-    \begin{align*}
-        \frac{||\ss_1||}{||\hh||} = \frac{||\ff(\ss_1)||}{||\ff(\hh)||} = \frac{||\ss_h||}{||\thh||} = \frac{||\thh||\cos(t)}{||\thh||} = \cos(t), \\
-        \frac{||\ss_2||}{||\hh||} = \frac{||\ff(\ss_2)||}{||\ff(\hh)||} = \frac{||\ss_v||}{||\thh||} = \frac{||\thh||\sin(t)}{||\thh||} = \sin(t).
-    \end{align*}
-    
-    This shows that if we have a right triangle and $t$ is one of the non-right angles, then, using $\text{adj}$ to denote the length of the side adjacent to $t$ by $\text{adj}$, $\text{opp}$ to denote the length of the side opposite to $t$, and $\text{hyp}$ to denote the length of the hypotenuse, we have
-
-    \begin{align*}
-        \cos(t) = \frac{\text{adj}}{\text{hyp}} \text{ and } \sin(t) = \frac{\text{opp}}{\text{hyp}}.
-    \end{align*}
+	(Cosine and sine as ratios of lengths of sides of right triangles).
+	
+	\newcommand{\thh}{\widetilde{\hh}}
+	
+	Consider an arbitrary right triangle $T$ with non-hypotenuse sides $\ss_1$ and $\ss_2$. Note, the hypotenuse $\hh$ is $\hh = \ss_1 \pm \ss_2$.
+	
+	For $i \in \{1, 2\}$, the $\ss_i$ which appears in the angle $\theta_u(\ss_i, \hh)$ is called the \textit{side adjacent to $\theta_u(\ss_i, \hh)$}; and the side $\ss_j$ which does not appear in that angle is called \textit{side opposite to $\theta_u(\ss_i, \hh)$}. Thus $\ss_1$ is the side adjacent to $\theta_u(\ss_1, \hh)$ and is also the side opposite to $\theta_u(\ss_2, \hh)$; $\ss_2$ is the side adjacent to $\theta_u(\ss_2, \hh)$ and is also the side opposite to $\theta_u(\ss_1, \hh)$.
+	
+	let $\ff$ be an length-preserving and signed-angle-preserving function that takes the arbitrary right triangle $T$ to a congruent right triangle $\ff(T) = \tT \subseteq Q_1$ in the first quadrant with hypotenuse $\thh = \ff(\hh)$, a horizontal side $\ss_h = \ff(\ss_1)$ that lies on the $x$-axis, and a vertical side $\ss_v = \ff(\ss_2)$. \textbf{justify why such $\ff$ exists}
+	
+	note, since $\ff$ preserves angles, then $\ff$ also preserves the adjacentness and oppositeness of triangle sides\footnote{If $\ss_i$ is the side adjacent to $\theta(\ss_i, \hh)$ then $\ff(\ss_i) = \ss_h$ is the side adjacent to $\theta(\ff(\ss_i), \ff(\hh))$; the analogous statement for opposite sides also holds.}
+	
+	\textbf{since $\ff$ is linear (justify why)} then since $\hh = \ss_1 \pm \ss_2$ we have $\ff(\hh) = \ff(\ss_1) \pm \ff(\ss_2) \iff \thh = \ss_h \pm \ss_v$. since $\thh \in Q_1$, the $\pm$ sign must be $+$, and we have $\thh = \ss_h + \ss_v = ||\ss_h||\widehat{\ss}_h + ||\ss_v|| \widehat{\ss}_v = (||\ss_h||, ||\ss_v||)^\top$. also, by the previous theorem we have $\thh = ||\thh||(\cos(t), \sin(t))^\top = (||\thh||\cos(t), ||\thh||\sin(t))^\top$, where $t = \theta_s(\see_1, \thh) = \theta_s(\ss_h, \thh)$. comparing the results of the previous two sentences we see $\ss_h = (||\thh||\cos(t), 0) = ||\thh||\cos(t)\see_1$ and $\ss_v = (0, ||\thh||\sin(t)) = ||\thh||\sin(t)\see_2$.
+	
+	with this information, we can obtain expressions for $\cos(t)$ and $\sin(t)$ as functions of the side lengths of $\tT \cong T$:
+	
+	\begin{align*}
+		\frac{||\ss_1||}{||\hh||} = \frac{||\ff(\ss_1)||}{||\ff(\hh)||} = \frac{||\ss_h||}{||\thh||} = \frac{||\thh||\cos(t)}{||\thh||} = \cos(t), \\
+		\frac{||\ss_2||}{||\hh||} = \frac{||\ff(\ss_2)||}{||\ff(\hh)||} = \frac{||\ss_v||}{||\thh||} = \frac{||\thh||\sin(t)}{||\thh||} = \sin(t).
+	\end{align*}
+	
+	This shows that if we have a right triangle and $t$ is one of the non-right angles, then, using $\text{adj}$ to denote the length of the side adjacent to $t$ by $\text{adj}$, $\text{opp}$ to denote the length of the side opposite to $t$, and $\text{hyp}$ to denote the length of the hypotenuse, we have
+	
+	\begin{align*}
+		\cos(t) = \frac{\text{adj}}{\text{hyp}} \text{ and } \sin(t) = \frac{\text{opp}}{\text{hyp}}.
+	\end{align*}
 \end{deriv}
 
 \begin{defn}
-    (Inverse trigonometric functions).
-
-    $\arccos$ and $\arcsin$ as inverses of one-to-one restrictions of $\cos$ to $[0, \pi]$ and $\sin$ to $[-\frac{\pi}{2}, \frac{\pi}{2}]$
+	(Inverse trigonometric functions).
+	
+	$\arccos$ and $\arcsin$ as inverses of one-to-one restrictions of $\cos$ to $[0, \pi]$ and $\sin$ to $[-\frac{\pi}{2}, \frac{\pi}{2}]$
 \end{defn}
 
+\subsection*{Rotations in $\R^2$}
+
+[we can only define rotations in $\R^2$ since we only have a notion of unsigned angle in $\R^2$]
+
+\begin{defn}
+	\label{ch::lin_alg::defn::rotation_in_R2}
+	(Rotations in $\R^2$).
+	
+	A function $\RR:\R^2 \rightarrow \R^2$ is a \textit{rotation in $\R^2$} iff it is an isometry that preserves signed angle.
+\end{defn}
+
+\begin{remark}
+	(Common alternative rotation terminology).
+	
+	Other texts define \textit{general rotations} to be length preserving functions that preserve length, \textit{un}signed angle, and fix the origin. When using this convention, \textit{proper rotations} are general rotations that preserve signed angle and \textit{improper rotations} are general rotations that negate signed angle. We don't use this convention, though.
+\end{remark}
+
 \begin{theorem}
-    \label{ch::lin_alg::defn::standard_matrix_rotation}
-    (Standard matrix of a rotation).
-     
-    The standard matrix of a rotation is
-
-    \begin{align*}
-        \begin{pmatrix}
-            \cos(t) & -\sin(t) \\
-            \sin(t) & \cos(t)
-        \end{pmatrix}
-    \end{align*}
-
-    for some $t \in [0, 2\pi)$.
-    
-    Since multiplying this matrix by $\see_1$ gives $(\cos(t), \sin(t))^\top = \cc(t)$, the rotation whose standard matrix is the above is called the \textit{counterclockwise rotation by $t$} and is denoted $\RR_t$. Similarly, since $\RR_{2\pi - t}(\see_1) = \widetilde{\cc}(t)$, the rotation $\widetilde{\RR}_t := \RR_{2\pi - t}$ is called the \textit{clockwise rotation by $t$}.
-
-    Clearly, every rotation is both a counterclockwise rotation by some amount and a clockwise rotation by some amount.
+	Every rotation in $\R^2$ is affine and invertible.
 \end{theorem}
 
 \begin{proof}
-    Let $\RR$ be a rotation. We know from Theorem \ref{ch::lin_alg::thm::vector_polar_form} that 
-
-    \begin{align*}
-        \RR(\vv) =
-        ||\RR(\vv)||
-        \begin{pmatrix}
-            \cos(\theta_s(\see_1, \RR(\vv)) \\
-            \sin(\theta_s(\see_1, \RR(\vv))
-        \end{pmatrix}
-        =
-        ||\vv||
-        \begin{pmatrix}
-            \cos(\theta_s(\see_1, \RR(\vv)) \\
-            \sin(\theta_s(\see_1, \RR(\vv))
-        \end{pmatrix}
-        \text{ for all $\vv \in \R^2$.}
-    \end{align*}
-        
-    When $\vv = \see_1$, then
-
-    \begin{align*}
-        \RR(\see_1) =
-        \begin{pmatrix}
-            \cos(t) \\
-            \sin(t)
-        \end{pmatrix},
-        \text{ where $t = \theta_s(\see_1, \RR(\see_1))$}.
-    \end{align*}
-
-    When $\vv = \see_2$, the transitivity of signed angle (recall Theorem \ref{ch::lin_alg::thm::transitivity_of_angle}) gives us $\theta_s(\see_1, \RR(\see_2)) = \theta_s(\see_1, \RR(\see_1)) + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\see_1, \see_2) = t + \frac{\pi}{2}$. Thus
-
-    \begin{align*}
-        \RR(\see_2) =
-        \begin{pmatrix}
-            \cos(\theta_s(\see_1, \RR(\see_2)) \\
-            \sin(\theta_s(\see_1, \RR(\see_2))
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            \cos(t + \frac{\pi}{2}) \\
-            \sin(t + \frac{\pi}{2})
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            \sin(-t) \\
-            \cos(-t)
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            -\sin(t) \\
-            \cos(t)
-        \end{pmatrix}.
-    \end{align*}
-
-    The standard matrix $\RR(\sE)$ of $\RR$ has $\RR(\see_1)$ as its first column and $\RR(\see_2)$ as its second column, so we have shown the theorem.
+	Rotations in $\R^2$ are isometries, we know from Theorem \ref{ch::lin_alg::thm::isometries_are_affine} that all isometries are affine and invertible.
 \end{proof}
 
+Since rotations in $\R^2$ are affine, rotations in $\R^2$ about the origin are linear, and thus represented by matrices. The next theorem gives the standard matrix of a rotation about the origin.
+
 \begin{theorem}
-    ().
-    
-    \begin{enumerate}
-        \item $\theta_s(\vv, \RR_t(\vv)) = t$ for all $\vv \in \R^2$.
-        \item For all $\hvv, \hww \in \R^2$ there exists a rotation taking $\hvv$ to $\hww$.
-    \end{enumerate}
+	\label{ch::lin_alg::defn::standard_matrix_rotation}
+	(Standard matrix of a rotation).
+	
+	The standard matrix of a rotation is
+	
+	\begin{align*}
+		\begin{pmatrix}
+			\cos(t) & -\sin(t) \\
+			\sin(t) & \cos(t)
+		\end{pmatrix}
+	\end{align*}
+	
+	for some $t \in [0, 2\pi)$.
+	
+	Since multiplying this matrix by $\see_1$ gives $(\cos(t), \sin(t))^\top = \cc(t)$, the rotation whose standard matrix is the above is called the \textit{counterclockwise rotation by $t$} and is denoted $\RR_t$. Similarly, since $\RR_{2\pi - t}(\see_1) = \widetilde{\cc}(t)$, the rotation $\widetilde{\RR}_t := \RR_{2\pi - t}$ is called the \textit{clockwise rotation by $t$}.
+	
+	Clearly, every rotation is both a counterclockwise rotation by some amount and a clockwise rotation by some amount.
 \end{theorem}
 
 \begin{proof}
-    \mbox{} \\
-    \begin{enumerate}
-        \item Using Theorem \ref{ch::lin_alg::thm::vector_polar_form}, we have $\vv = ||\vv||(\cos(\theta), \sin(\theta))^\top$, where $\theta = \theta_s(\see_1, \vv)$. Thus
-
-        \begin{align*}
-            \RR_t(\vv) =
-            \begin{pmatrix}
-                \cos(t) & -\sin(t) \\
-                \sin(t) & \cos(t)
-            \end{pmatrix}
-            \left(
-            ||\vv||
-            \begin{pmatrix}
-                \cos(\theta) \\ \sin(\theta)
-            \end{pmatrix}
-            \right)
-            =
-            ||\vv||
-            \begin{pmatrix}
-                \cos(\theta) \cos(t) - \sin(\theta) \sin(t) \\
-                \cos(\theta) \sin(t) + \sin(\theta) \cos(t))
-            \end{pmatrix}
-            =
-            ||\vv||
-            \begin{pmatrix}
-                \cos(\theta + t) \\
-                \sin(\theta + t)
-            \end{pmatrix}.
-        \end{align*}
-
-        Then $\theta_s(\vv, \RR_t(\vv)) = s(\xx, \hvv, \widehat{\RR_t(\vv)})$, where $\xx:[0, 2\pi) \rightarrow \R^2$ is defined by $\xx(t) = (\cos(t), \sin(t))^\top$, which is
-
-        \begin{align*}
-            s(\xx, \hvv, \widehat{\RR_t(\vv)}) =
-            \theta_s
-            \left(
-                \begin{pmatrix} \cos(\theta) \\ \sin(\theta) \end{pmatrix},
-                \begin{pmatrix} \cos(\theta + t) \\ \sin(\theta + t) \end{pmatrix}
-            \right)
-            =
-            \int_{\theta}^{\theta + t}
-            \Big|\Big|
-            \frac{d}{dt}
-            \begin{pmatrix}
-                \cos(t) \\
-                \sin(t)
-            \end{pmatrix}
-            \Big|\Big|
-            dt
-            =
-            \int_{\theta}^{\theta + t} dt
-            = (\theta + t) - \theta = t.
-        \end{align*}
-
-        That is, $\theta_s(\vv, \RR_t(\vv)) = s(\xx, \hvv, \widehat{\RR_t(\vv)}) = t$, as desired.
-                
-        \item By (1), we have $\theta_s(\hvv, \RR_{\theta_s(\hvv, \hww)}(\hvv)) = \theta_s(\hvv, \hww)$. We know from Theorem \ref{ch::lin_alg::lemma::vector_from_vector_and_angle} that the vector $\huu \in \R^2$ for which $\theta_s(\hvv, \huu) = \theta_s(\hvv, \hww)$ is unique. Therefore $\huu = \RR_{\theta_s(\hvv, \hww)}(\vv) = \hww$, so $\RR_{\theta_s(\hvv, \hww)}$ takes $\hvv$ to $\hww$.        
-    \end{enumerate}
+	Let $\RR$ be a rotation. We know from Theorem \ref{ch::lin_alg::thm::vector_polar_form} that 
+	
+	\begin{align*}
+		\RR(\vv) =
+		||\RR(\vv)||
+		\begin{pmatrix}
+			\cos(\theta_s(\see_1, \RR(\vv)) \\
+			\sin(\theta_s(\see_1, \RR(\vv))
+		\end{pmatrix}
+		=
+		||\vv||
+		\begin{pmatrix}
+			\cos(\theta_s(\see_1, \RR(\vv)) \\
+			\sin(\theta_s(\see_1, \RR(\vv))
+		\end{pmatrix}
+		\text{ for all $\vv \in \R^2$.}
+	\end{align*}
+	
+	When $\vv = \see_1$, then
+	
+	\begin{align*}
+		\RR(\see_1) =
+		\begin{pmatrix}
+			\cos(t) \\
+			\sin(t)
+		\end{pmatrix},
+		\text{ where $t = \theta_s(\see_1, \RR(\see_1))$}.
+	\end{align*}
+	
+	When $\vv = \see_2$, the transitivity of signed angle (recall Theorem \ref{ch::lin_alg::thm::transitivity_of_angle}) gives us $\theta_s(\see_1, \RR(\see_2)) = \theta_s(\see_1, \RR(\see_1)) + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\see_1, \see_2) = t + \frac{\pi}{2}$. Thus
+	
+	\begin{align*}
+		\RR(\see_2) =
+		\begin{pmatrix}
+			\cos(\theta_s(\see_1, \RR(\see_2)) \\
+			\sin(\theta_s(\see_1, \RR(\see_2))
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			\cos(t + \frac{\pi}{2}) \\
+			\sin(t + \frac{\pi}{2})
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			\sin(-t) \\
+			\cos(-t)
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			-\sin(t) \\
+			\cos(t)
+		\end{pmatrix}.
+	\end{align*}
+	
+	The standard matrix $\RR(\sE)$ of $\RR$ has $\RR(\see_1)$ as its first column and $\RR(\see_2)$ as its second column, so we have shown the theorem.
 \end{proof}
 
-\subsection*{Projections}
+\begin{theorem}
+	().
+	
+	\begin{enumerate}
+		\item $\theta_s(\vv, \RR_t(\vv)) = t$ for all $\vv \in \R^2$.
+		\item For all $\hvv, \hww \in \R^2$ there exists a rotation taking $\hvv$ to $\hww$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\mbox{} \\
+	\begin{enumerate}
+		\item Using Theorem \ref{ch::lin_alg::thm::vector_polar_form}, we have $\vv = ||\vv||(\cos(\theta), \sin(\theta))^\top$, where $\theta = \theta_s(\see_1, \vv)$. Thus
+		
+		\begin{align*}
+			\RR_t(\vv) =
+			\begin{pmatrix}
+				\cos(t) & -\sin(t) \\
+				\sin(t) & \cos(t)
+			\end{pmatrix}
+			\left(
+			||\vv||
+			\begin{pmatrix}
+				\cos(\theta) \\ \sin(\theta)
+			\end{pmatrix}
+			\right)
+			=
+			||\vv||
+			\begin{pmatrix}
+				\cos(\theta) \cos(t) - \sin(\theta) \sin(t) \\
+				\cos(\theta) \sin(t) + \sin(\theta) \cos(t))
+			\end{pmatrix}
+			=
+			||\vv||
+			\begin{pmatrix}
+				\cos(\theta + t) \\
+				\sin(\theta + t)
+			\end{pmatrix}.
+		\end{align*}
+		
+		Then $\theta_s(\vv, \RR_t(\vv)) = s(\xx, \hvv, \widehat{\RR_t(\vv)})$, where $\xx:[0, 2\pi) \rightarrow \R^2$ is defined by $\xx(t) = (\cos(t), \sin(t))^\top$, which is
+		
+		\begin{align*}
+			s(\xx, \hvv, \widehat{\RR_t(\vv)}) =
+			\theta_s
+			\left(
+			\begin{pmatrix} \cos(\theta) \\ \sin(\theta) \end{pmatrix},
+			\begin{pmatrix} \cos(\theta + t) \\ \sin(\theta + t) \end{pmatrix}
+			\right)
+			=
+			\int_{\theta}^{\theta + t}
+			\Big|\Big|
+			\frac{d}{dt}
+			\begin{pmatrix}
+				\cos(t) \\
+				\sin(t)
+			\end{pmatrix}
+			\Big|\Big|
+			dt
+			=
+			\int_{\theta}^{\theta + t} dt
+			= (\theta + t) - \theta = t.
+		\end{align*}
+		
+		That is, $\theta_s(\vv, \RR_t(\vv)) = s(\xx, \hvv, \widehat{\RR_t(\vv)}) = t$, as desired.
+		
+		\item By (1), we have $\theta_s(\hvv, \RR_{\theta_s(\hvv, \hww)}(\hvv)) = \theta_s(\hvv, \hww)$. We know from Theorem \ref{ch::lin_alg::lemma::vector_from_vector_and_angle} that the vector $\huu \in \R^2$ for which $\theta_s(\hvv, \huu) = \theta_s(\hvv, \hww)$ is unique. Therefore $\huu = \RR_{\theta_s(\hvv, \hww)}(\vv) = \hww$, so $\RR_{\theta_s(\hvv, \hww)}$ takes $\hvv$ to $\hww$.        
+	\end{enumerate}
+\end{proof}
+
+\subsection*{Projections in $\R^2$}
 
 \begin{defn}
 \label{ch::lin_alg::defn::vector_proj}
@@ -3100,54 +3426,6 @@ The \textit{cross product} also comes with two common pedagogical problems. [sec
     \end{proof}
 \end{comment}
 
-\section{Geometry in $\R^n$}
-
-\subsection*{Length}
-
-\begin{defn}
-\label{ch::lin_alg::defn::length_in_Rn}
-    (Length of a vector in $\R^n$). 
-
-    When $n > 2$ and we have a vector $\vv_n \in \R^n$, we consider $\vv_n$ in the form $\vv_n = \vv_{n - 1} + ([\vv]_\sE)_n \see_n$, where $\vv_{n - 1} \in \R^{n - 1}$, and define the \textit{length} (or \textit{magnitude}) $||\vv_n||$ of $\vv_n$ to be
-
-    \begin{align*}
-        ||\vv_n|| = \sqrt{||\vv_{n - 1}||^2 + ([\vv]_\sE)_n^2} \text{ when $n > 2$}.
-    \end{align*}
-\end{defn}
-
-\begin{defn}
-\label{ch::lin_alg::defn::unit_vector_hat_notation}
-    (Unit vector hat notation). 
-    
-    As we did in $\R^2$, we define for $\vv \in \R^n$ notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^2$.
-\end{defn}
-
-\begin{theorem}
-    (Length of a vector in $\R^n$).
-
-    For all $\vv \in \R^n$ and all $n$, the length of $\vv$ is
-
-    \begin{align*}
-        ||\vv|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}\spc.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-    We prove the theorem by induction.
-
-    (Base case). The definition of the length of a vector in $\R^2$ establishes the base case.
-
-    (Inductive case). Let $\vv_n \in \R^n$. Assume as the inductive hypothesis that the claim is true for $n$; we need to show the claim is true for $n + 1$.
-
-    By the definition the length of a vector in $\R^{n + 1}$ (Definition \ref{ch::lin_alg::thm::length_in_Rn}), for $\vv_{n + 1} \in \R^{n + 1}$ we have \\ ${||\vv_{n + 1}|| = \sqrt{||\vv_n||^2 + ([\vv]_\sE)_{n + 1}^2}}$. By the inductive hypothesis, $||\vv_n|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}^2$, so
-
-    \begin{align*}
-        ||\vv_{n + 1}|| = \sqrt{\sqrt{\sum_{i = 1}^n \Big(([\vv]_\sE)_i^2\Big)}^2 + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^n \Big([\vv]_\sE)_i^2\Big) + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^{n + 1} ([\vv]_\sE)_i^2}.
-    \end{align*}
-
-    This proves the claim for $n + 1$.
-\end{proof}
-
 \section{Length and angle [relocate the below to new updated sections above]}
 
 \subsection*{Length and angle in $\R^n$}
@@ -3294,17 +3572,21 @@ This section generalizes the notion of the dot product, which we only know to be
 
 \begin{theorem}
 \label{ch::bilinear_forms_metric_tensors::thm::Cauchy_Schwarz}
-     (Cauchy-Schwarz inequality for vector spaces over $\R$).
+     (Generalized Cauchy-Schwarz inequality).
      
-     Let $V$ be a vector space over $\R$ with inner product. Then the \textit{Cauchy-Schwarz inequality} holds: \\ ${\langle \vv_1, \vv_2 \rangle \leq ||\vv_1|| \spc ||\vv_2|| \text{ for all $\vv_1, \vv_2 \in V$}}$. 
+     Let $V$ be a vector space over $\R$ with inner product. Then for all $\vv, \ww \in V$ we have
      
-     Note, the Cauchy-Schwarz inequality is equivalent to the statement that the angle $\theta$ in $V$ between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$ satisfies $\theta \in [0, 2 \pi)$.
+     \begin{align*}
+     	\langle \vv, \ww \rangle \leq ||\vv|| \spc ||\ww||.
+     \end{align*}
+     
+    It's worth noting that this inequality is equivalent to the statement that the angle $\theta$ in $V$ between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$ satisfies $\theta \in [0, 2 \pi)$.
 \end{theorem}
 
 \begin{proof}
-    Define $f:\R \rightarrow [0, \infty) \subseteq \R$ by $f(k) = \langle k \vv_1 + \vv_2, k \vv_1 + \vv_2 \rangle = k^2 \langle \vv_1, \vv_1 \rangle + 2 k \langle \vv_1, \vv_2 \rangle + \langle \vv_2, \vv_2 \rangle$. Set $a := \langle \vv_1, \vv_1 \rangle$, $b := 2 \langle \vv_1, \vv_2 \rangle$, and $c := \langle \vv_2, \vv_2 \rangle$, so that $f(k) = ak^2 + bk + c$.
+    Define $f:\R \rightarrow [0, \infty) \subseteq \R$ by $f(t) = \langle t \vv_1 + \vv_2, t \vv_1 + \vv_2 \rangle = t^2 \langle \vv_1, \vv_1 \rangle + 2t \langle \vv_1, \vv_2 \rangle + \langle \vv_2, \vv_2 \rangle$. Set $a := \langle \vv_1, \vv_1 \rangle$, $b := 2 \langle \vv_1, \vv_2 \rangle$, and $c := \langle \vv_2, \vv_2 \rangle$, so that $f(t) = at^2 + bt + c$.
     
-    Since $\langle \cdot, \cdot \rangle$ is positive-definite, then $f$ is nonnegative, and therefore must have either one or zero real roots. According to the quadratic formula, one real root occurs when $b^2 - 4ac = 0$, and zero real roots occur when $b^2 - 4ac < 0$. So, we must have $b^2 - 4ac \leq 0$. 
+    Since $\langle \cdot, \cdot \rangle$ is positive-definite, then $f$ is nonnegative, and therefore has at most one real root. According to the quadratic formula, one real root occurs when $b^2 - 4ac = 0$, and zero real roots occur when $b^2 - 4ac < 0$. So, we must have $b^2 - 4ac \leq 0$. 
     
     Using our expressions for $a, b$, and $c$, we see that $(4 \langle \vv_1, \vv_2 \rangle)^2 - 4(\langle \vv_1, \vv_2 \rangle)(\langle \vv_2, \vv_2 \rangle) \leq 0$. Thus \\ ${\langle \vv_1, \vv_2 \rangle^2 \leq \langle \vv_1, \vv_1 \rangle \langle \vv_2, \vv_2 \rangle = ||\vv_1||^2 ||\vv_2||^2}$. Take the square root of each side to obtain the result.  
 \end{proof}

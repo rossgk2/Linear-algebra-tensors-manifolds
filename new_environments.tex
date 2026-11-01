@@ -32,8 +32,14 @@
 
 % for indentation
 \usepackage{changepage}
+% adjustwidth is a list, so it sets \parindent to \listparindent (0pt) and the
+% first paragraph starts right after an \item (whose \everypar discards the
+% \indent box); restore the outer \parindent and add the first indent by hand
+\newlength{\fullindentparindent}
 \newcommand{\fullindent}[1]{%
-  \begin{adjustwidth}{2em}{0pt}
-    #1
-  \end{adjustwidth}
+  \setlength{\fullindentparindent}{\parindent}%
+  \begin{adjustwidth}{2em}{0pt}%
+    \setlength{\parindent}{\fullindentparindent}%
+    \hspace*{\parindent}\ignorespaces#1%
+  \end{adjustwidth}%
 }
